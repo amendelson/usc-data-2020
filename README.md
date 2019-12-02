@@ -1,7 +1,7 @@
 <div class="header">
 <h1 class="ml7">
   <span class="text-wrapper">
-    <span class="letters"><p id ="usc p">Data&nbsp;&nbsp;Journalism&nbsp;&nbsp;&nbsp;USC&nbsp;&nbsp;2019</p></span>
+    <span class="letters"><p id ="usc p">Data&nbsp;&nbsp;Journalism&nbsp;&nbsp;&nbsp;USC&nbsp;&nbsp;2020</p></span>
   </span>
 </h1>
 </div>
@@ -29,7 +29,7 @@
   padding-bottom: 0.1em;
   overflow: hidden;
   padding-left: 14px;
-  
+
 }
 .ml7 .letter {
   transform-origin: 0 100%;
@@ -113,7 +113,7 @@ var end = new Date('04/30/2019 5:00 PM');
     timer = setInterval(showRemaining, 1000);
     */
 </script>
-<div id="countdown"> 
+<div id="countdown">
 </div>
 
 <br>
@@ -124,16 +124,17 @@ Here is [the class syllabus](docs/syllabus.pdf).
 
 The class meets 6:30 to 8:30 on Thursday nights in ANN 408. The final exam is on May 7 from 7-9 p.m.
 
-This class will involve the use of technical tools, and coding. But if you want to learn how to use mapping and data analysis to report great stories, you're in the right class. The journalism is the most important part. 
+This class will involve the use of technical tools, and coding. But if you want to learn how to use mapping and data analysis to report great stories, you're in the right class. The journalism is the most important part.
 
 ## Class links
 
 * **[Week One](week1/)**: Course overview. Introductions.
 * **Week Two**: Class Project discussion.
 * **Week Three**: Visualizing Data with ggplot, Part 1 – faceting. Class project discussion.
-* **Week Four**: Visualizing Data with ggplot, Part 2 – layers and interactivity 
-* **Week Five**: Class project discussion* **Week Six**: Writing functions and loops in R
-* **Week Seven**: Tidyuniverse in R – cleaning and transforming data. 
+* **Week Four**: Visualizing Data with ggplot, Part 2 – layers and interactivity
+* **Week Five**: Class project discussion
+* **Week Six**: Writing functions and loops in R
+* **Week Seven**: Tidyuniverse in R – cleaning and transforming data.
 * **Week Eight**: Tidyuniverse in R – modeling data. Class project discussion
 * **Week Nine**: TidyCensus in R – the best way to reign in Census data
 * Spring Break
@@ -142,14 +143,14 @@ This class will involve the use of technical tools, and coding. But if you want 
 * **Week Twelve**: Mapping Part 3 – Using Open Street Map and Plug-Ins
 * **Week Thirteen**: Mapping Part 4 – Interactive Maps. Class project discussion
 * **Week Fourteen**: Bulk geocoding data with an API
-* **Week Fifteen**: Overview of Jupyter Notebook and R Kernel. Using Markdown and Github. 
+* **Week Fifteen**: Overview of Jupyter Notebook and R Kernel. Using Markdown and Github.
 * Final
 
 
 
 ```
 
- .----------------.  .----------------. 
+ .----------------.  .----------------.
 | .--------------. || .--------------. |
 | |  ________    | || |      __      | |
 | | |_   ___ `.  | || |     /  \     | |
@@ -159,8 +160,8 @@ This class will involve the use of technical tools, and coding. But if you want 
 | | |________.'  | || ||____|  |____|| |
 | |              | || |              | |
 | '--------------' || '--------------' |
- '----------------'  '----------------' 
- .----------------.  .----------------. 
+ '----------------'  '----------------'
+ .----------------.  .----------------.
 | .--------------. || .--------------. |
 | |  _________   | || |      __      | |
 | | |  _   _  |  | || |     /  \     | |
@@ -170,7 +171,7 @@ This class will involve the use of technical tools, and coding. But if you want 
 | |   |_____|    | || ||____|  |____|| |
 | |              | || |              | |
 | '--------------' || '--------------' |
- '----------------'  '----------------' 
+ '----------------'  '----------------'
 
 
 ```
