@@ -11,7 +11,7 @@
 
 <style>
 .header{
-      background-image: linear-gradient(to right, #e66465, #9198e5);
+      background-image: linear-gradient(to right, #ff5f6d, #ffc371);
 }
 
 .ml7 {
@@ -28,7 +28,7 @@
   padding-bottom: 0.1em;
   overflow: hidden;
   padding-left: 14px;
-  
+
 }
 .ml7 .letter {
   transform-origin: 0 100%;
@@ -91,13 +91,13 @@ What do you do?
 
 [Start here](https://data.edd.ca.gov/Labor-Force-and-Unemployment-Rates/Labor-Force-and-Unemployment-Rate-for-California-C/r8rw-9pxx).
 
-We'll go over how to wrangle that and make a county-by-county map. 
+We'll go over how to wrangle that and make a county-by-county map.
 
 BTW, here is a [definition](https://web.archive.org/web/20061217002213/http://www.labormarketinfo.edd.ca.gov/article.asp?ARTICLEID=118) of *seasonally-adjusted*:
 
-> Over the course of a year, the size of the labor force, the levels of employment and unemployment, and other measures of labor market activity undergo fluctuations due to seasonal events including changes in weather, harvests, major holidays, and school schedules.  Because these seasonal events follow a more or less regular pattern each year, their influence on statistical trends can be eliminated by seasonally adjusting the statistics from month to month.  These seasonal adjustments make it easier to observe the cyclical*, underlying trend, and other nonseasonal movements in the series. 
+> Over the course of a year, the size of the labor force, the levels of employment and unemployment, and other measures of labor market activity undergo fluctuations due to seasonal events including changes in weather, harvests, major holidays, and school schedules.  Because these seasonal events follow a more or less regular pattern each year, their influence on statistical trends can be eliminated by seasonally adjusting the statistics from month to month.  These seasonal adjustments make it easier to observe the cyclical*, underlying trend, and other nonseasonal movements in the series.
 
-> As a general rule, the monthly employment and unemployment numbers reported in the news are seasonally adjusted data.  Seasonally adjusted data are useful when comparing several months of data. Annual average estimates are calculated from the not seasonally adjusted data series. 
+> As a general rule, the monthly employment and unemployment numbers reported in the news are seasonally adjusted data.  Seasonally adjusted data are useful when comparing several months of data. Annual average estimates are calculated from the not seasonally adjusted data series.
 
 
 And then you'll use QGIS to make another map using the data.
@@ -106,7 +106,7 @@ And then you'll use QGIS to make another map using the data.
 
 ...
 
-([Here is something we will need](https://data.ca.gov/dataset/ca-geographic-boundaries/resource/091ff50d-bb24-4537-a974-2ce89c6e8663)) 
+([Here is something we will need](https://data.ca.gov/dataset/ca-geographic-boundaries/resource/091ff50d-bb24-4537-a974-2ce89c6e8663))
 
 ---
 

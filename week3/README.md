@@ -11,7 +11,7 @@
 
 <style>
 .header{
-      background-image: linear-gradient(to right, #e66465, #9198e5);
+      background-image: linear-gradient(to right, #ff5f6d, #ffc371);
 }
 
 .ml7 {
@@ -28,7 +28,7 @@
   padding-bottom: 0.1em;
   overflow: hidden;
   padding-left: 14px;
-  
+
 }
 .ml7 .letter {
   transform-origin: 0 100%;
@@ -146,7 +146,7 @@ It might take a couple minutes (or more) to run. Why?
 
 **7. That looks like all of them?**
 
-Let's open up the attribute table and see what actually happened under the hood. 
+Let's open up the attribute table and see what actually happened under the hood.
 
 * How can we select just the ones that really joined?
 * How can we export this as a spreadsheet and analyze for our story (we'll go deeper into this, time pending)

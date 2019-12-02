@@ -11,7 +11,7 @@
 
 <style>
 .header{
-      background-image: linear-gradient(to right, #e66465, #9198e5);
+      background-image: linear-gradient(to right, #ff5f6d, #ffc371);
 }
 
 .ml7 {
@@ -28,7 +28,7 @@
   padding-bottom: 0.1em;
   overflow: hidden;
   padding-left: 14px;
-  
+
 }
 .ml7 .letter {
   transform-origin: 0 100%;
@@ -139,7 +139,7 @@ Yes? We're not going to use it right now, so close it if it worked.
 
 If not, we might switch over to the other version of miniconda. ([Or try this approach](https://www.firstpythonnotebook.org/virtualenv/index.html).)
 
-And oh, by the way, R, our programming language of choice, doesn't come pre-installed on Jupyter notebooks. This is the type of setup challenge that is common in coding. 
+And oh, by the way, R, our programming language of choice, doesn't come pre-installed on Jupyter notebooks. This is the type of setup challenge that is common in coding.
 
 Thankfully, [miniconda makes it easy](https://anaconda.org/chdoig/jupyter-and-conda-for-r/notebook). Try this:
 
@@ -239,7 +239,7 @@ We can do math on the whole dataframe:
 mtcars$mpg * 2
 
 ```
-Alright, let's make a quick chart. In data journalism, you make approximately 100 charts for internal use and data exploration for every chart you actually publish. So here's a chart to explore the miles per gallon these cars get. 
+Alright, let's make a quick chart. In data journalism, you make approximately 100 charts for internal use and data exploration for every chart you actually publish. So here's a chart to explore the miles per gallon these cars get.
 
 ```
 hist(mtcars$mpg)

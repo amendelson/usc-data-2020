@@ -12,7 +12,7 @@
 
 <style>
 .header{
-      background-image: linear-gradient(to right, #e66465, #9198e5);
+      background-image: linear-gradient(to right, #ff5f6d, #ffc371);
 }
 
 .ml7 {
@@ -29,7 +29,7 @@
   padding-bottom: 0.1em;
   overflow: hidden;
   padding-left: 14px;
-  
+
 }
 .ml7 .letter {
   transform-origin: 0 100%;
@@ -126,10 +126,10 @@ Now let's get unemployment data for LA County. Lot going on here, so let's get i
 
 ```
 ```{r racejobvars, warning=F, message=F, quietly=T, echo=T, results='hide'}
-jobs <- c(labor_force = "B23025_005E", 
+jobs <- c(labor_force = "B23025_005E",
               unemployed = "B23025_002E")
-lac <- get_acs(geography="tract", year=2016, 
-                  variables= jobs, county = "Los Angeles", 
+lac <- get_acs(geography="tract", year=2016,
+                  variables= jobs, county = "Los Angeles",
                   state="CA", geometry=T)```
 ```
 
@@ -146,12 +146,12 @@ Let's do it all in one fell swoop.
 
 ```
 ```{r}
-lac_tidy <- lac %>% 
+lac_tidy <- lac %>%
   mutate(variable=case_when(
     variable=="B23025_005" ~ "Unemployed",
     variable=="B23025_002" ~ "Workforce")) %>%
-  select(-moe) %>% 
-  spread(variable, estimate) %>% 
+  select(-moe) %>%
+  spread(variable, estimate) %>%
   mutate(percent_unemployed=round(Unemployed/Workforce*100,2))```
 
 ```
@@ -160,7 +160,7 @@ We can now plot it.
 
 ```
 ```{r}
-lac_tidy %>% ggplot(aes(fill=percent_unemployed)) + 
+lac_tidy %>% ggplot(aes(fill=percent_unemployed)) +
   geom_sf(color=NA) +
   theme_void() +
   theme(panel.grid.major = element_line(colour = NA)) +
@@ -172,9 +172,9 @@ Hmm. Might be easier to read without those pesky, ecologically-rich islands. Let
 
 ```
 ```{r}
-lac_tidy %>% 
-	filter(GEOID != "06037599000" & GEOID != "06037599100") %>% 
-	ggplot(aes(fill=percent_unemployed)) + 
+lac_tidy %>%
+	filter(GEOID != "06037599000" & GEOID != "06037599100") %>%
+	ggplot(aes(fill=percent_unemployed)) +
 	  geom_sf(color=NA) +
 	  theme_void() +
 	  theme(panel.grid.major = element_line(colour = NA)) +
@@ -274,7 +274,7 @@ datatable(lac_tidy)```
 
 This is one of [many great htmlwidets in R](https://www.htmlwidgets.org/showcase_datatables.html) that make creating things for the internet a breeze.
 
-Let's commit again to Github. And with any remaining time we can 
+Let's commit again to Github. And with any remaining time we can
 
 1) meet in Final Project groups
 

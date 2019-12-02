@@ -11,7 +11,7 @@
 
 <style>
 .header{
-      background-image: linear-gradient(to right, #e66465, #9198e5);
+      background-image: linear-gradient(to right, #ff5f6d, #ffc371);
 }
 
 .ml7 {
@@ -28,7 +28,7 @@
   padding-bottom: 0.1em;
   overflow: hidden;
   padding-left: 14px;
-  
+
 }
 .ml7 .letter {
   transform-origin: 0 100%;
@@ -88,7 +88,7 @@ anime.timeline({loop: true})
 	* [Battling treacherous office chairs and aching backs, aging cops and firefighters miss years of work and collect twice the pay](https://www.latimes.com/local/california/la-me-drop-20180203-htmlstory.html)
 	* [Veteran L.A. cops and firefighters can work one shift, then collect double pay for years](https://www.latimes.com/local/lanow/la-me-drop-one-day-rule-20180218-story.html)
 		* Optional but interesting: [Before becoming LAPD chief, Moore retired, collected a $1.27-million payout, then was rehired
-](https://www.latimes.com/local/lanow/la-me-chief-drop-2018-08012-story.html)	
+](https://www.latimes.com/local/lanow/la-me-chief-drop-2018-08012-story.html)
 	* [L.A. and Orange counties are an epicenter of overcrowded housing](https://www.latimes.com/local/la-me-crowding-20140308-story.html)
 	* [Mapping the country's crowded homes](http://graphics.latimes.com/crowding-map/)
 

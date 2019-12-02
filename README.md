@@ -12,7 +12,7 @@
 
 <style>
 .header{
-      background-image: linear-gradient(to right, #e66465, #9198e5);
+      background-image: linear-gradient(to right, #ff5f6d, #ffc371);
 }
 
 .ml7 {
@@ -80,6 +80,7 @@ anime.timeline({loop: true})
 </script>
 
 <script>
+/*
 var end = new Date('04/30/2019 5:00 PM');
 
     var _second = 1000;
@@ -110,38 +111,38 @@ var end = new Date('04/30/2019 5:00 PM');
     }
 
     timer = setInterval(showRemaining, 1000);
+    */
 </script>
 <div id="countdown"> 
 </div>
 
 <br>
 
-Welcome to the website for JOUR 561: Fundamentals of Data                   Journalism Reporting. You'll find links to course materials here. You can get to this page by typing in `http://tiny.cc/usc-data` in your browser's address bar.
+Welcome to the website for JOUR 561: Fundamentals of Data                   Journalism Reporting. You'll find links to course materials here. You can get to this page by typing in `tiny.cc/2wv4gz` in your browser's address bar.
 
 Here is [the class syllabus](docs/syllabus.pdf).
 
-The class meets 6:30 to 8:30 on Wednesday nights in ANN 307. The final exam is on May 1 from 7-9 p.m.
+The class meets 6:30 to 8:30 on Thursday nights in ANN 408. The final exam is on May 7 from 7-9 p.m.
 
 This class will involve the use of technical tools, and coding. But if you want to learn how to use mapping and data analysis to report great stories, you're in the right class. The journalism is the most important part. 
 
 ## Class links
 
 * **[Week One](week1/)**: Course overview. Introductions.
-* **[Week Two](week2/)**: Class Project discussion.
-* **[Week Three](week3/)**: Mapping Part 1 – Buffers on steroids, spatial queries and spatial joins.
-* **[Week Four](week4/)**: Class Project discussion.
-* **[Week Five](week5/)**: Mapping Part 2 - Projections and the finer points of mapping.
-* **[Week Six](week6/)**: Mapping Part 3 – Using Open Street Map and Plug-Ins.
-* **[Week Seven](week7/)**: Mapping Part 4 – Interactive Maps. Class project discussion.
-* **[Week Eight](week8/)**: Bulk geocoding data with an API.
-* **[Week Nine](week9/)**: Overview of Jupyter Notebook and R Kernel. Using Markdown and Github.
+* **Week Two**: Class Project discussion.
+* **Week Three**: Visualizing Data with ggplot, Part 1 – faceting. Class project discussion.
+* **Week Four**: Visualizing Data with ggplot, Part 2 – layers and interactivity 
+* **Week Five**: Class project discussion* **Week Six**: Writing functions and loops in R
+* **Week Seven**: Tidyuniverse in R – cleaning and transforming data. 
+* **Week Eight**: Tidyuniverse in R – modeling data. Class project discussion
+* **Week Nine**: TidyCensus in R – the best way to reign in Census data
 * Spring Break
-* **[Week Ten](week10/)**: Visualizing Data with ggplot2, Part 1 – faceting. Class project discussion.
-* **[Week Eleven](week11/)**: Visualizing Data with ggplot2, Part 2 – layers and interactivity.
-* **[Week Twelve](week12/)**: Writing functions and loops in R.
-* **[Week Thirteen](week13/)**: Guest speaker
-* **[Week Fourteen](week14/)**: Tidyuniverse in R – modeling data. Class project discussion.
-* **[Week Fifteen](week15/)**: TidyCensus in R – the best way to reign in Census data.
+* **Week Ten**: Mapping Part 1 – Buffers on steroids, spatial queries and spatial joins.
+* **Week Eleven**: Mapping Part 2 - Projections and the finer points of mapping.
+* **Week Twelve**: Mapping Part 3 – Using Open Street Map and Plug-Ins
+* **Week Thirteen**: Mapping Part 4 – Interactive Maps. Class project discussion
+* **Week Fourteen**: Bulk geocoding data with an API
+* **Week Fifteen**: Overview of Jupyter Notebook and R Kernel. Using Markdown and Github. 
 * Final
 
 

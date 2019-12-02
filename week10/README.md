@@ -11,7 +11,7 @@
 
 <style>
 .header{
-      background-image: linear-gradient(to right, #e66465, #9198e5);
+      background-image: linear-gradient(to right, #ff5f6d, #ffc371);
 }
 
 .ml7 {
@@ -28,7 +28,7 @@
   padding-bottom: 0.1em;
   overflow: hidden;
   padding-left: 14px;
-  
+
 }
 .ml7 .letter {
   transform-origin: 0 100%;
@@ -71,7 +71,7 @@ anime.timeline({loop: true})
 
 
 # Week 10
-This week, we're diving into data analysis in R. 
+This week, we're diving into data analysis in R.
 
 ---
 
@@ -84,7 +84,7 @@ No lecture. All coding!
 ### Hands-on
 
 **1. Getting started**
- 
+
 Let's install and load a couple packages we'll need today.
 
 ```

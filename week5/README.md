@@ -11,7 +11,7 @@
 
 <style>
 .header{
-      background-image: linear-gradient(to right, #e66465, #9198e5);
+      background-image: linear-gradient(to right, #ff5f6d, #ffc371);
 }
 
 .ml7 {
@@ -28,7 +28,7 @@
   padding-bottom: 0.1em;
   overflow: hidden;
   padding-left: 14px;
-  
+
 }
 .ml7 .letter {
   transform-origin: 0 100%;
@@ -71,7 +71,7 @@ anime.timeline({loop: true})
 
 
 # Week 5
-This week, we're going further into mapmaking. 
+This week, we're going further into mapmaking.
 
 ---
 
@@ -116,7 +116,7 @@ Why choose this kind of map? What'll we learn?
 **4. Change the colors**
 
 
-To do this, close the attribute table and call up Properties>Style for the CA_counties_medicare layer. Select Graduated from the dropdown menu at top, which is the option to color data according to values of a continuous variable. Select 5 under Classes, and then New color ramp... under Color ramp. While QGIS has many available color ramps, we will use this opportunity to call in a ColorBrewer sequential color scheme. 
+To do this, close the attribute table and call up Properties>Style for the CA_counties_medicare layer. Select Graduated from the dropdown menu at top, which is the option to color data according to values of a continuous variable. Select 5 under Classes, and then New color ramp... under Color ramp. While QGIS has many available color ramps, we will use this opportunity to call in a ColorBrewer sequential color scheme.
 
 At the dialog box select [ColorBrewer](http://colorbrewer2.org/) and then Reds, and then click OK:
 

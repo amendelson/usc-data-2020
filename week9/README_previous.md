@@ -11,7 +11,7 @@
 
 <style>
 .header{
-      background-image: linear-gradient(to right, #e66465, #9198e5);
+      background-image: linear-gradient(to right, #ff5f6d, #ffc371);
 }
 
 .ml7 {
@@ -28,7 +28,7 @@
   padding-bottom: 0.1em;
   overflow: hidden;
   padding-left: 14px;
-  
+
 }
 .ml7 .letter {
   transform-origin: 0 100%;
@@ -149,7 +149,7 @@ If you have R installed, you've opened it up. (Notice the dollar sign is gone.) 
 
 ```
 install.packages(c('repr', 'IRdisplay', 'evaluate', 'crayon', 'pbdZMQ', 'devtools', 'uuid', 'digest'))
- 
+
 ```
 
 You'll have to pick a 'mirror' to install them.
@@ -258,7 +258,7 @@ We can do math on the whole dataframe:
 mtcars$mpg * 2
 
 ```
-Alright, let's make a quick chart. In data journalism, you make approximately 100 charts for internal use and data exploration for every chart you actually publish. So here's a chart to explore the miles per gallon these cars get. 
+Alright, let's make a quick chart. In data journalism, you make approximately 100 charts for internal use and data exploration for every chart you actually publish. So here's a chart to explore the miles per gallon these cars get.
 
 ```
 hist(mtcars$mpg)
