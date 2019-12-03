@@ -71,331 +71,193 @@ anime.timeline({loop: true})
 
 
 # Week 11
-This week, we're going to become wizards of ggplot2, the best way to create graphics in R.
+This week, we're going further into mapmaking.
+
+---
+
+### Lecture
+
+[Slides](https://docs.google.com/presentation/d/1TFlAbZCLbRcD7X_yC-Tk3pfFga5AMSVzZzfkJrhpRuA/edit#slide=id.g489c55b846_0_142)
 
 ---
 
 ### Hands-on
 
-Adapted from a great tutorial by [Rebecca Barter](http://www.rebeccabarter.com/blog/2017-11-17-ggplot2_tutorial/).
+**1. Download [this data](http://paldhous.github.io/NICAR/2015/data/qgis.zip).**
 
-**The layered grammar of graphics**
+There should be two files.
 
-ggplot2 is based around three ideas. They make more sense in practice, but it's helpful to outline them up front:
+**2. Double click on the shapefile to open it up.**
 
-* data: a data frame containing the variables that you want to visualize
-* geoms: geometric objects (circles, lines, text) that you will actually see
-* aesthetics: the mapping from the data to the geographic objects (e.g. by describing position, size, colour, etc)
+Notice EPSG:4269 at the bottom right. This defines the map projection and datum for the layer.
 
-**1.Let's download our data and start making a chart**
+Right-click on CA_counties_medicare in the Layers panel at left and select Properties>General. You should see the following under Coordinate reference system:
 
-We're using the the gapminder dataset again this week.
+![](http://paldhous.github.io/NICAR/2015/img/qgis_5.jpg)
 
-First, fire up R Studio. Then, we'll load everything we need and remind ourselves what this data looks like.
+EPSG:4269 and NAD83 mean that this shapefile is in an [Equirectangular projection](https://en.wikipedia.org/wiki/Equirectangular_projection), and the [NAD83 datum](https://en.wikipedia.org/wiki/North_American_Datum).
 
-```
-library(tidyverse)
-library(gapminder)
-head(gapminder)
-```
+(The Equirectangular projection, which draws a map with degrees of latitude and longitude the same size across the entire globe, is also the default for QGIS if no projection is specificied.)
 
-So ggplot. We tell it what data (a data frame) we are interested in and how each of the variables in our dataset will be used (e.g. as an x or y coordinate, as a coloring variable or a size variable, etc).
+We'll select another projection for our map later. Let's close for now.
 
-The output of this function is a grid with gdpPercap as the x-axis and lifeExp as the y-axis. However, we have not yet told ggplot what type of geometric object the data will be mapped to, so no data has been displayed.
+**3. Explore our data**
 
-Essentially, we've created the grid for the chart. But not the chart yet.
+Now we need to color the areas for the CA_counties_medicare layer by values in the data. Right-click on it in the Layers panel and select Open Attribute Table.
 
-```
-ggplot(gapminder, aes(x = gdpPercap, y = lifeExp))
-```
+Scroll to the right of the table to see the fields detailing various categories of Medicare reimbursement.
 
-Next, we will add a “geom” layer to our ggplot object. This one will be points.
+Very interesting.
 
-```
-ggplot(gapminder, aes(x = gdpPercap, y = lifeExp)) +
-  # add a points layer on top
-  geom_point()
-```
+We are going to make [a choropleth map](https://datavizcatalogue.com/methods/choropleth.html) of reimbursements per enrollee for hospitals and skilled nursing facilities, in the hospital field.
 
-Now we're talking.
+Why choose this kind of map? What'll we learn?
 
-**2. Transparency, color, size**
+**4. Change the colors**
 
-What we've done is map each country (row) in the data to a point in the space defined by the GDP and life expectancy value. The end result is a fascinating blob of points. Fortunately, there are many things that we can do to make this blob of points look better.
 
-One possibility? Change the transparency of the points by setting the transparency.
+To do this, close the attribute table and call up Properties>Style for the CA_counties_medicare layer. Select Graduated from the dropdown menu at top, which is the option to color data according to values of a continuous variable. Select 5 under Classes, and then New color ramp... under Color ramp. While QGIS has many available color ramps, we will use this opportunity to call in a ColorBrewer sequential color scheme.
 
+At the dialog box select [ColorBrewer](http://colorbrewer2.org/) and then Reds, and then click OK:
 
-Let's change the 'alpha' argument.
+You will need to give the color ramp a name — the default Reds5 is fine. Select HOSPITAL under Column, and select Quantile (Equal Count) for Mode. This menu gives various options for automatically setting the boundaries between the five classes or bins. Then click the Classify button to produce the following display:
 
-```
-ggplot(gapminder, aes(x = gdpPercap, y = lifeExp)) +
-  geom_point(alpha = 0.5)
-```
+![](http://paldhous.github.io/NICAR/2015/img/qgis_9.jpg)
 
-What other tweaks could we make? How about changing the color of the points to be blue instead of black, and making the points smaller.
+Now let’s edit the breaks manually to use values guided by the quantiles, but which will be easier for users to process when reading the map legend.
 
-```
-ggplot(gapminder, aes(x = gdpPercap, y = lifeExp)) +
-  geom_point(alpha = 0.5, col = "cornflowerblue", size = 0.5)
-```
-As you can see, ggplot will change many things at the same time.
+Double-click on the first symbol and select 3250 for the Upper value and click OK. Then double-click on the Label for this symbol and edit the text to < $3,250. Carry on editing the values and labels until the display looks like this:
 
-But what if we want different colors for the points, based on the continent of each country?
+![](http://paldhous.github.io/NICAR/2015/img/qgis_10.jpg)
 
-We can make use of the aes() function. Let check out what those continents are first.
+Click OK and the map should look like this:
 
-```
-unique(gapminder$continent)
-```
+![](http://paldhous.github.io/NICAR/2015/img/qgis_11.jpg)
 
-Got it. Ok, so we can plug that continent vector into ggplot, and ask it to color the points differently, depending on what continent the country represents.
+We've done a lot of work already. Time to save the project, by selecting Project>Save.
 
-```
-ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, color = continent)) +
-  geom_point(alpha = 0.5, size = 0.5)
-```
-Nice! There's other things we can change, too, like the size of the points. Say we want to make those correspond to the population of the country.
+**5. Time to design**
 
-```
-ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, color = continent, size = pop)) +
-  geom_point(alpha = 0.5)
-```
+Let's make the boundaries white and see if that looks better. So open up the Style tab under Properties once more and click on Symbol>Change.... Then select Simple fill, click on the color for Border and in the color wheel tab of the color picker, change the color to white, by moving each of the RGB sliders to 255:
 
-**3. Other chart types**
+![](http://paldhous.github.io/NICAR/2015/img/qgis_12.jpg)
 
-So far, we have only seen scatterplots (point geoms). But there are many other geoms we *could* add, including:
+Click on Symbol>Change again, and and set the Transparency to 50%. This will keep the relative distinctions between the colors, but tone them down a little so they don’t dominate the layer we will later plot on top.
 
-* lines
-* histograms
-* boxplots and violin plots
-* barplots
-* smoothed curves
+OK. The map should now look like this:
 
-Let's try some out
+![](http://paldhous.github.io/NICAR/2015/img/qgis_13.jpg)
 
-What's different about this one?
+**6. Label o'clock**
 
-```
-ggplot(gapminder, aes(x = year, y = lifeExp, group = country, color = continent)) +
-  geom_line(alpha = 0.5)
-```
-
-How might this one be different?
-
-```
-ggplot(gapminder, aes(x = continent, y = lifeExp, fill = continent)) +
-  geom_boxplot()
-```
-
-Let's bust out a historgram.
-```
-ggplot(gapminder, aes(x = lifeExp)) +
-  geom_histogram(binwidth = 3)
-```
-
-And finally let's try to find how a mathematical model might interpret our data. Don't publish these, but they can be helpful for internal use.
-
-```
-ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, size = pop)) +
-  geom_point(aes(color = continent), alpha = 0.5) +
-  geom_smooth(se = FALSE, method = "loess", color = "grey30")
-```
-
-**4.Let's make something publishable**
-
-We want a focused chart to show readers. So let’s filter to a single year.
-
-```
-gapminder_2007 <- gapminder %>% filter(year == 2007)
-ggplot(gapminder_2007, aes(x = gdpPercap, y = lifeExp, color = continent, size = pop)) +
-  geom_point(alpha = 0.5)
-```
-
-Let's get fancy and use a logorithmic scale. Who kjnows what that is?
-
-Here's how we do that.
-
-```
-ggplot(gapminder_2007, aes(x = gdpPercap, y = lifeExp, color = continent, size = pop)) +
-  geom_point(alpha = 0.5) +
-  scale_x_log10()
-```
-
-Now it's time to add a title and change the name of the y-axis and legends using the labs function.
-
-```
-ggplot(gapminder_2007, aes(x = gdpPercap, y = lifeExp, color = continent, size = pop)) +
-  # add scatter points
-  geom_point(alpha = 0.5) +
-  # log-scale the x-axis
-  scale_x_log10() +
-  # change labels
-  labs(title = "GDP versus life expectancy in 2007",
-       x = "GDP per capita (log scale)",
-       y = "Life expectancy",
-       size = "Popoulation",
-       color = "Continent")
-```
+To add labels to the map, select Properties>Labels and fill in the dialog box. Here I am adding a NAME label to each county, using Arial font, Italic style at a size of 11 points and with the color set to a HEX value of #4c4c4c for a dark gray:
 
-
-**5. Themes**
+![](http://paldhous.github.io/NICAR/2015/img/qgis_14.jpg)
 
-Mabye you, like me, kinda hate this gray background.
+Click OK and the map should now look like this:
 
-Well, you can change it with the ggthemes package.
+![](http://paldhous.github.io/NICAR/2015/img/qgis_15.jpg)
 
-```
-install.packages("ggthemes")
-library(ggthemes)
-```
+Save again.
 
-Let's take a look at some of [the available themes](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/) and try them out on that last chart.
+**7. About that projection...**
 
-Finally, let's go crazy and see if we can figure out everything this is doing.
+Now is a good time to give the project a projection: We will use variant of the Albers Equal Area Conic projection, *optimized for maps of California* (!).
 
-```
-ggplot(gapminder_2007, aes(x = gdpPercap, y = lifeExp, color = continent, size = pop)) +
-  # add scatter points
-  geom_point(alpha = 0.5) +
-  # clean the axes names and breaks
-  scale_x_log10(breaks = c(1000, 10000),
-                limits = c(200, 120000)) +
-  # change labels
-  labs(title = "GDP versus life expectancy in 2007",
-       x = "GDP per capita (log scale)",
-       y = "Life expectancy",
-       size = "Popoulation (millions)",
-       color = "Continent") +
-  # change the size scale
-  scale_size(range = c(0.1, 10),
-             breaks = 1000000 * c(250, 500, 750, 1000, 1250),
-             labels = c("250", "500", "750", "1000", "1250")) +
-  # add a nicer theme
-  theme_classic(base_family = "Helvetica")
-```
+Select Project>Project Properties>CRS (for Coordinate Reference System) from the top menu, and check Enable 'on the fly' CRS transformation. This will convert any subsequent layers we import into the Albers projection, also.
 
-And let's talk about how to save a chart you create in R.
+Type Albers into the Filter box and select NAD83(HARN)/ California Albers, which has the code EPSG:3311.
 
-### EXTRA BONUS HAND-ON CODING
 
-Here we're gonna scrape the web with the `rvest` package.
+Click OK and the map should reproject. Notice how EPSG:3311 now appears at bottom right.
 
-Start by installing and loading it.
+**8. Go deeper with more data.**
 
-```
-install.packages("rvest")
-library(rvest)
-```
+Let's add a layer showing locations and capacities hospitals/skilled nursing facilities.
 
-Next, we're going to tell it the URL of the page we want to scrape.
+We're starting from a csv. Anyone remember how we did this last time?
 
-```
-url <- "https://en.wikipedia.org/wiki/List_of_Governors_of_California_by_age"
-```
+When you click OK you will be asked to select a projection, or CRS, for the data. [Gets wonky, but important.] You may be tempted to select the same Albers projection we have set for the project, but this will cause an error. QGIS will handle the conversion to that projection: Because this data is not yet projected, we should instead select a datum with a default Equirectangular projection, either WGS 84 EPSG:4326 or NAD83 EPSG:4297.
 
-Next, we're gonna ... just go ahead and scrape the table. There's a lot going on here, so let's examine closely.
+Click OK and a large number of points will be added to the map:
 
-```
-govs <- url %>%
-    read_html() %>%
-    html_nodes("table") %>%
-    html_table(header = NA) %>%
-    as.data.frame()
-```
+![](http://paldhous.github.io/NICAR/2015/img/qgis_20.jpg)
 
-Let's take a look. There are some issues, so let's fix them before getting to the fun stuff. Let's delete these columns we don't need, first off.
+**9. Style these points...**
 
-```
-govs$Age.at.inauguration <- NULL
-govs$Age.at.endof.term <- NULL
-govs$Length.ofretirement <- NULL
-govs$Lifespan <- NULL
-```
-Let's rename some vectors with ugly names.
+...using color to distinguish hospitals from skilled nursing facilities, removing other facilities from the map, and scaling the circles according to the capacity of each facility.
 
-```
-colnames(govs)[1] <- c("rank_by_age")
-colnames(govs)[3] <- c("num_in_office")
-```
+Sounds complicated, but it's not too tricky.
 
-Let's delete that pesky last row. See what we're doing here?
+Select Properties>Style for the Healthcare_Facility_Locations layer, and accept Categorized from the top dropdown menu. SelectTYPE under Column and then hit the Classify button. (Keeping Random colors for the Color ramp is fine, as we will later edit the colors manually). Select and then Delete facilities other than General Acute Care Hospital and Skilled Nursing Facility, like this:
 
-```
-govs <- head(govs,40)
-```
+![](http://paldhous.github.io/NICAR/2015/img/qgis_21.jpg)
 
-There are also some footnotes in the DOB column. Good for Wikipedia users, not good for us. This is a `regular expression`. Regex could be it's own class, but here we're just removing everything in a string after the `[` character.
+To then have just the two left.
 
-```
-govs$Date.of.birth <- gsub("\\[.*","",govs$Date.of.birth)
-```
+Now click the Change button next to where it says Symbol, and then click on the menu next to "Size" and go to "Size Assistant". Choose Capacity for the field and Radius for the Scale Method.
 
-And finally, let's make the number in office an actual number. We'll need this later.
+(We're scaling smaller than what the picture shows.)
 
-```
-govs$num_in_office <- as.numeric(govs$num_in_office)
-```
+![](http://paldhous.github.io/NICAR/2015/img/qgis_23.jpg)
 
-Whew. Data should be much cleaner now. Except ... our dates don't look like dates at all.
+**10.Control the size**
 
-How can we change that? Let's do it with the `lubridate` package.
+Let's say we want to change the size.
 
-```
-install.packages("lubridate")
-library(lubridate)
-```
+To fix this, return to Properties>Symbol>Size, then select
+- edit - and fill in the dialog box as follows:
 
-Let's see what this function does
+![](http://paldhous.github.io/NICAR/2015/img/qgis_24.jpg)
 
-```
-mdy(govs$Date.of.birth)
-```
+We're just dividing the numbers in the CAPACITY field by 30.
 
-Perfect. This stuff used to be a total pain, but lubridate has made it so, so painless.
+Good or no? Let's try another number until we get it right.
 
-Now we can fix all our dates.
+In the main Style tab, click on each point symbol and select Simple marker to edit its color. Also set transparency for the symbols to 50%, as we did for the choropleth map.
 
-```
-govs$Date.of.birth <- mdy(govs$Date.of.birth)
-govs$Date.of.inauguration <- mdy(govs$Date.of.inauguration)
-govs$End.ofterm <- mdy(govs$End.ofterm)
-govs$Date.of.death <- mdy(govs$Date.of.death)
+The final map should look something like this:
 
-```
+![](http://paldhous.github.io/NICAR/2015/img/qgis_25.jpg)
 
-We can also do math with dates. Check it out.
+Good work!
 
-```
-govs$Date.of.birth - govs$Date.of.inauguration
-```
+**11. If we have time: export and make a legend**
 
-Awesome. Let's bring this class full circle and chart the data. We'll do that with the ``ggalt`` package.
+We can export our finished map with a legend explaining the colors, so let’s change the name of the fields so they display nicely. Right-click on each layer and rename them `Facility type` and `Medicare reimbursement per enrollee`.
 
-```
-install.packages("ggalt")
-library(ggalt)
-```
+To export the map, select Project>New Print Composer, give the composer an appropriate name and click OK. In the print composer window, select the following options in the Composition tab:
 
-Now, we can actually plot out their terms in office.
+![](http://paldhous.github.io/NICAR/2015/img/qgis_26.jpg)
 
-```
-govs %>% ggplot(aes(y = reorder(Governor, num_in_office), x = Date.of.inauguration, xend = End.ofterm)) + geom_dumbbell(color = "steelblue")
-```
+Now click the Add new map icon, which looks like a little scroll of paper. Draw a rectangle over the page area, and the map should appear, You can edit its size, and adjust its position, as desired.
 
-We can also plot out their lifespans. Some of them are still among the living, so let's code their 'death' as today's date. Take a look at how we do that.
 
-```
-govs$Date.of.death <- case_when(is.na(govs$Date.of.death) == TRUE ~ Sys.Date(), TRUE ~ govs$Date.of.death)
+Once you are statisfied with the appearance of your map in the print composer, click the Add legend icon. It looks like a legend if you look very closely.
 
-govs %>% ggplot(aes(y = reorder(Governor, num_in_office), x = Date.of.birth, xend = Date.of.death)) + geom_dumbbell(color = "steelblue")
-```
+Draw a rectangle on the page where you want the legend to appear.
+
+**12. Export**
+
+You can save your maps in raster image formats (JPG, PNG etc) from the Print Composer by clicking the Save Image icon. Boom!
+
+*This tutorial is based on [a session from NICAR 2015 by Peter Aldhous](http://paldhous.github.io/NICAR/2015/qgis.html)*
+
+---
+
+### Links
+
+* [Map projection video](https://www.youtube.com/watch?v=kIID5FDi2JQ)
+* [Google Maps now depicts the Earth as a globe](https://www.theverge.com/2018/8/5/17653122/google-maps-update-mercator-projection-earth-isnt-flat)
+* [Boston public schools map switch aims to amend 500 years of distortion](https://www.theguardian.com/education/2017/mar/19/boston-public-schools-world-map-mercator-peters-projection)
 
 ---
 
 ### Homework
 
-* R Data Viz Assignment. Using data from your Final Project create two charts using ggplot.
-	* If you need inspiration, use code from our walkthrough today. Or, take a look at some of these [simple cool R chart examples](https://www.r-graph-gallery.com/).
-	* Due on **Sunday by 5 PM**.
+* Mapping Assignment 1. Due by Sunday at 5 PM.
+	* Part 1: Download [this data](https://data.chhs.ca.gov/dataset/hospital-building-data) about the Seismic Ratings and Collapse Probabilities of California Hospitals. Plot them all on a map of California. (You have a shapefile with the counties from today's lesson.) Filter for only the buildings with an SPC rating of 1 or 2 (1 and 2 mean "assigned to buildings posing significant risk of collapse following a strong earthquake".) Export it, they way we did in class, with a legend.
+		* [Here's the data dictionary](https://data.chhs.ca.gov/dataset/seismic-ratings-and-collapse-probabilities-of-california-hospitals/resource/c075b694-aa9c-4ed1-8991-a06099db16b1) (i.e. descriptions of the fields in the data).
+	* Part 2: Using the data from the homework: write a memo for a story you could report. At least 200 words. Include your lede, sources you could interview, and a data visualization.
+* Final Project: You should be exploring your data set, looking for trends and limitations in the data.
 * Story memo: 50-100 words about Final Project progress over last week

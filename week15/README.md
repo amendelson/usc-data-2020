@@ -5,7 +5,6 @@
   </span>
 </h1>
 </div>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -72,253 +71,228 @@ anime.timeline({loop: true})
 
 
 # Week 15
-
-By popular demand, we'll be spending some more time with R, getting more practice with Github, and exploring other ways to use R.
+This week, we are going to take some big steps in our coding journey.
 
 ---
 
-## Hands-on
+### Lecture
 
-## Part 1: Rmarkdown
+[Slides](https://docs.google.com/presentation/d/1Gg1DM3Q1OT5QFbs8Q4Pes57PqbwqdObb8-p58ph7pKg/edit#slide=id.p)
 
+---
 
-Let's do something new today: Let's work from a Rmarkdown file.
+### Hands-on
 
-These files are a popular way to share code, and not unlike the notebooks we discussed earlier this year.
+**0. The pre-reqs**
 
-Most of the basics of the markdown language are [laid out here](https://rmarkdown.rstudio.com/authoring_basics.html).
+You've already installed R, Miniconda and created your Github account.
 
-Let's open one up and save it. Make sure to save it in a new folder — we're going to commit this to Github later. You have to essentially save it twice — first setting it up, and second saving it to your computer.
+**1. Let's code**
 
-We can see how the basic setup works but running the code in the template it provides.
-
-Basically, the Rmarkdown notebooks let us alternate code and text in a reader-friendly way. When might this be helpful in a newsroom?
-
-Let's get a sense of what that looks like by "knitting" our document into an HTML page.
-
-Do that, and then let's spend a moment examining how our R code translates into what we see on the webpage.
-
-## Part 2: Data transformations and mapping in ggplot
-
-With **tidycensus**, you can actually download the shape files with the data you want already attached. No joins necessary.
-
-I didn't tell you this last week ... because it's important to learn about joins the hard way.
-
-So let's delete what's already in our markdown file. And create our first code chunk.
+Anytime you see something that looks like `this`, or that looks like
 
 ```
-```{r tidyness, warning=F, message=F, echo=T}
-library(tidycensus)
-library(tidyverse)```
+this
 ```
 
-Cool! Nothing happened. We need to run it. There are multiple ways to do that.
+...that's code. These course webpages are tutorials we're going to go through.
 
-All this does is load tidycensus. We also need to load your census API, if it is not already installed.
+**2. Taking the terminal for a spin**
 
-```
-```{r key, eval=F}
-# Pass it the census key you set up before
-census_api_key("YOUR API KEY GOES HERE")```
-```
+Alright, open up your **terminal**. On Windows, this may be called **PowerShell**.
 
-Now let's get unemployment data for LA County. Lot going on here, so let's get it running and then see what it's doing.
+It make take a sec to boot up. You should see something like this
 
-```
-```{r racejobvars, warning=F, message=F, quietly=T, echo=T, results='hide'}
-jobs <- c(labor_force = "B23025_005E",
-              unemployed = "B23025_002E")
-lac <- get_acs(geography="tract", year=2016,
-                  variables= jobs, county = "Los Angeles",
-                  state="CA", geometry=T)```
-```
+<img src="imgs/1.png" width="400">
 
-And what does that look like?
+That dollar sign is important. After the dollar sign, we'll put the code in many examples (like what we're about to do). Try this out:
 
 ```
-```{r lac, echo=T}
-head(lac)```
+$ ls
 ```
 
-We want to get the rate, right? The data is not in the right shape yet. What do we need to do?
-
-Let's do it all in one fell swoop.
+Now this:
 
 ```
-```{r}
-lac_tidy <- lac %>%
-  mutate(variable=case_when(
-    variable=="B23025_005" ~ "Unemployed",
-    variable=="B23025_002" ~ "Workforce")) %>%
-  select(-moe) %>%
-  spread(variable, estimate) %>%
-  mutate(percent_unemployed=round(Unemployed/Workforce*100,2))```
-
+$ open .
 ```
 
-We can now plot it.
+Let's navigate to somewhere you keep code. If I want to keep it on a folder on my desktop called 'code', here's how I'd do that:
 
 ```
-```{r}
-lac_tidy %>% ggplot(aes(fill=percent_unemployed)) +
-  geom_sf(color=NA) +
-  theme_void() +
-  theme(panel.grid.major = element_line(colour = NA)) +
-  scale_fill_distiller(palette="Reds", direction=1, name="Estimate") +
-  labs(title="Percent unemployed in Los Angeles")```
+$ cd ~/Desktop/code/
 ```
 
-Hmm. Might be easier to read without those pesky, ecologically-rich islands. Let's filter them out. Spot the difference.
+Now try ```ls``` again.
+
+Neat. [Here is a list of common commands](https://www.tjhsst.edu/~dhyatt/superap/unixcmd.html) — worth bookmarking.
+
+**3. Setting up our notebook**
+
+OK, now we want to get our notebook up and running. Let's see if it works right out of the gate.
 
 ```
-```{r}
-lac_tidy %>%
-	filter(GEOID != "06037599000" & GEOID != "06037599100") %>%
-	ggplot(aes(fill=percent_unemployed)) +
-	  geom_sf(color=NA) +
-	  theme_void() +
-	  theme(panel.grid.major = element_line(colour = NA)) +
-	  scale_fill_distiller(palette="Reds", direction=1, name="Estimate") +
-	  labs(title="Percent unemployed in Los Angeles")```
+jupyter notebook
 ```
 
-Thanks to [this great tutorial for our inspiration here](https://github.com/andrewbtran/NICAR-2019-mapping/blob/master/01_maps_code.Rmd).
+Yes? We're not going to use it right now, so close it if it worked.
 
-## Let's commit that to Github
+If not, we might switch over to the other version of miniconda. ([Or try this approach](https://www.firstpythonnotebook.org/virtualenv/index.html).)
 
-We're repurposing this from [last week](https://amendelson.github.io/usc-course-spring-2019/week14/).
+And oh, by the way, R, our programming language of choice, doesn't come pre-installed on Jupyter notebooks. This is the type of setup challenge that is common in coding.
 
-Start by opening your terminal. Punch in the following:
-
-```
-$ git init .
-```
-
-That will instruct git to initialize a new repository in your current folder, which is represented by the period.
-
-Now you’re ready to start logging your work. Changes to you code are logged by git in batches known as “commits.”
-
-It is not required but a good first step before committing any work is to run git’s status command, which will output the current state of your repository.
+Thankfully, [miniconda makes it easy](https://anaconda.org/chdoig/jupyter-and-conda-for-r/notebook). Try this:
 
 ```
-git status
+conda install -c r r-essentials
 ```
 
-Since your repository is brand new, all of the files will be listed as “untracked.” That means that while git sees that these files exist it is not monitoring them for changes.
+**4. Opening up the notebook**
 
-The first step in logging your work is to ask git to start tracking your files using the add command.
+Alright, time to open up that notebook. Open a new window or tab in your terminal, just like you would on a web browser. Then navigate to a folder where you keep your code (like we did above).
 
-In this repository, we will go ahead and add any and everything.
-
-```
-$ git add .
-```
-
-Now, let's check the status again.
+And type in:
 
 ```
-git status
+jupyter notebook
 ```
 
-Log its addition with git’s commit command. You must include a personalized message, which you can provide along with the command by adding on the -m flag along with a description of the work you’ve done.
+And boom!
+
+**5. Wait, did my web browser just open up?**
+
+Yes it did. You use a Jupyter Notebook through the browser.
+
+Except it's not online—it's actually running "locally" — only on your computer. Pretty nifty.
+
+You should see all the files of wherever you directed your terminal window in step two. If it's in the right place, click on the "new" button and add an R notebook.
+
+**6. Test things out**
+
+The way Jupyter works is that you type your code into the gray cell, and then see the output below.
+
+Your work can continue in the *next* gray cell after that.
+
+Start by typing this in
 
 ```
-git commit -m "First commit"
+demo(graphics)
 ```
 
-That’s it. You’ve made your first git commit.
+Look familar?
 
-We're not done yet. We still need to publish this to Github.
+**7. Lets look at some data**
 
-Visit GitHub and create a new public repository named mapping-transforming-r. Don’t check “Initialize with README.” You want to start with a blank repository.
-
-This will create a new repository page. It needs to be synchronized with the local repository we’ve already created.
-
-You can connect your local directory to GitHub’s site by returning to the terminal and using git’s “remote add” command to connect it with GitHub.
+Try this
 
 ```
-git remote add origin https://github.com/<yourusername>/usc-r.git
+head(mtcars)
 ```
 
-Next we’ll try “pushing” the latest commit from your repository up to GitHub. Assuming all of your work has been properly logged to your local repository, here’s what it takes.
+Now this
 
 ```
-git push origin master
+head(mtcars, 25)
 ```
 
-Cool. Now try this again.
+What's the difference?
+
+OK, how about
 
 ```
-git status
+summary(mtcars)
 ```
 
-## Creating a searchable table
-
-One thing you may want to do in your journalism life is create a searchable table, whether to publish, for your own use, or to share with editors and collaborators.
-
-Thankfully, that's easy to do. Let's check out the `DT` library.
+Or
 
 ```
-install.packages("DT")
-library(DT)```
+str(mtcars)
 ```
 
-Let's get rid of a couple vectors we don't need, and use it.
+OK, now type each of these things in and see what happens
 
 ```
-```{r}
-lac_tidy$geometry <- NULL
-lac_tidy$GEOID <- NULL
-datatable(lac_tidy)```
+"I should exercise more."
+1+1
+1==2
+1:1000
+animals <- c("bears","monkeys","donkeys")
+animals[1]
+class(animals)
+class(1==2)
+class(1:1000)
 ```
 
-This is one of [many great htmlwidets in R](https://www.htmlwidgets.org/showcase_datatables.html) that make creating things for the internet a breeze.
+**9. Explore some data**
 
-Let's commit again to Github. And with any remaining time we can
+OK, let's go back to the cars data. What does this do.
 
-1) meet in Final Project groups
+```
+mtcars$mpg
+```
 
-2) explore some of those widgets
+In that code, `mtcars` is our dataframe. And `mpg` is the vector of the dataframe. It's a column, basically.
 
-3) or check out a couple of wild R packages that caught your prof's eye recently, [Mapdeck](https://symbolixau.github.io/mapdeck/articles/layers.html) and [Rayshader](https://www.rayshader.com/)
+We can do math on the whole dataframe:
+
+```
+mtcars$mpg * 2
+
+```
+Alright, let's make a quick chart. In data journalism, you make approximately 100 charts for internal use and data exploration for every chart you actually publish. So here's a chart to explore the miles per gallon these cars get.
+
+```
+hist(mtcars$mpg)
+```
+Cool! A histogram. So what's this showing us?
+
+Ok, here's a different type of graph:
+
+```
+plot(mtcars$mpg)
+```
+
+And we can plot two variables at once on a scatterplot.
+
+```
+plot(mtcars$hp, mtcars$mpg)
+```
+
+If you don't understand how something works in R, you can always put a quesiton mark in front of it to get the help box to pop up.
+
+```
+?plot
+```
+
+You can also plot every variable against every other variable:
+
+```
+pairs(mtcars)
+```
+
+Now, so your prof can prepare for the rest of the course, type this in:
+
+```
+install.packages("tidyverse")
+```
+
+And then this:
+
+```
+library(tidyverse)
+```
+
+Questions? If we have any extra time, we'll look at brining in some real life data...or commiting everything to Github.
+
+---
+
+### Links
 
 ---
 
 ### Homework
 
-<div class ="header">
-<script>
-var end = new Date('04/30/2019 5:00 PM');
-
-    var _second = 1000;
-    var _minute = _second * 60;
-    var _hour = _minute * 60;
-    var _day = _hour * 24;
-    var timer;
-
-    function showRemaining() {
-        var now = new Date();
-        var distance = end - now;
-        if (distance < 0) {
-
-            clearInterval(timer);
-            document.getElementById('countdown').innerHTML = 'EXPIRED!';
-
-            return;
-        }
-        var days = Math.floor(distance / _day);
-        var hours = Math.floor((distance % _day) / _hour);
-        var minutes = Math.floor((distance % _hour) / _minute);
-        var seconds = Math.floor((distance % _minute) / _second);
-
-        document.getElementById('countdown').innerHTML = days + ' days ';
-        document.getElementById('countdown').innerHTML += hours + ' hours ';
-        document.getElementById('countdown').innerHTML += minutes + ' mins until Final Project drafts are due';
-
-    }
-
-    timer = setInterval(showRemaining, 1000);
-</script><h1>
-<div id="countdown">
-</h1>
-</div>
+* Mapping Assignment 3: I want you to map a dataset related to your Final Project. Every group member needs to make their own map.
+	* You've got two weeks to do it, so I expect something good.
+	* The data doesn't have to be something you'll necessarily use in your Final Project, just something related. But it's a good opportunity to make a draft of something you'll use later.
+* Story memo: 50-100 words about Final Project progress over last week

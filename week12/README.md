@@ -71,204 +71,53 @@ anime.timeline({loop: true})
 
 
 # Week 12
-This week, we're talking about the importance of **tidy** data ... and how to make your data tidy.
+This week, we'll use those new mapping skills (and some old-fashioned problem solving) to tackle a breaking news challenge.
 
 ---
 
 ### Lecture
 
-[Slides](https://docs.google.com/presentation/d/1SlCA6neTiBd6G7ZVfJohozj0AYrhkDS_Nz_ttENfvNM/edit#slide=id.p)
+There is no lecture! No time! There's breaking news!
 
 ---
 
-### Hands-on — Part 1
+### Hands-on
 
-Let's talk about functions and for loops by building off our scraping work last week.
+We've got some piping-hot data: the latest unemployment figures for California.
 
-I've packaged everything we did into a single R script, [available here](/https://github.com/amendelson/usc-course-spring-2019/blob/gh-pages/week12/govs_scraping.R). Download the file.
+You're the only data journalist around in the newsroom, and the editors want a map ASAP.
 
-Let's see how you can run R from the command line. Open up your terminal or powershell. Type in `R` to launch R.
+What do you do?
 
-It should look a little different. If it does, type a version of this in, making an adjustment for the location of the R script you just downloaded.
+[Start here](https://data.edd.ca.gov/Labor-Force-and-Unemployment-Rates/Labor-Force-and-Unemployment-Rate-for-California-C/r8rw-9pxx).
 
-```
-source("~/data-path-to-your-file/govs_scraping.r", echo = TRUE)
-```
+We'll go over how to wrangle that and make a county-by-county map.
 
-Cool, right?
+BTW, here is a [definition](https://web.archive.org/web/20061217002213/http://www.labormarketinfo.edd.ca.gov/article.asp?ARTICLEID=118) of *seasonally-adjusted*:
 
-Now let's fire up R Studio and try the exact same line of code.
+> Over the course of a year, the size of the labor force, the levels of employment and unemployment, and other measures of labor market activity undergo fluctuations due to seasonal events including changes in weather, harvests, major holidays, and school schedules.  Because these seasonal events follow a more or less regular pattern each year, their influence on statistical trends can be eliminated by seasonally adjusting the statistics from month to month.  These seasonal adjustments make it easier to observe the cyclical*, underlying trend, and other nonseasonal movements in the series.
 
-```
-source("~/data-path-to-your-file/govs_scraping.r", echo = TRUE)
-```
+> As a general rule, the monthly employment and unemployment numbers reported in the news are seasonally adjusted data.  Seasonally adjusted data are useful when comparing several months of data. Annual average estimates are calculated from the not seasonally adjusted data series.
 
-Should've done the same thing. And now you've got the dataframe loaded in your environment.
 
-OK, now we want to answer the question: **during what year were the most governors alive at the same time?**
+And then you'll use QGIS to make another map using the data.
 
-How would we do that, just conceptually?
+**Your editor demands a fresh angle on the unemployment rate, putting this month's numbers in historical context.** What can you come up with?
 
 ...
 
-Let's start our journey by just testing out one year, to see which governors were alive then.
+([Here is something we will need](https://data.ca.gov/dataset/ca-geographic-boundaries/resource/091ff50d-bb24-4537-a974-2ce89c6e8663))
 
-```
-govs %>% filter(Date.of.birth < mdy("01-01-1900") & Date.of.death > mdy("01-01-1900"))
-```
+---
 
-Great. If we just wanted a count, not all the columns, we could do this.
+### Links
 
-```
-govs %>% filter(Date.of.birth < mdy("01-01-1900") & Date.of.death > mdy("01-01-1900")) %>% nrow()
-```
-
-Ok, here is what we're going to do. But let's unpack it for a given `i` before we run the whole function. There is a lot going on here.
-
-```
-alive_stats <- data.frame()
-
-for (i in 1806:2018) {
-
-	begin <- mdy(paste("01-01-",i,sep=""))
-	end <- mdy(paste("01-01-",(i+1),sep=""))
-
-	count_alive <- govs %>% filter(Date.of.birth < begin & Date.of.death > end) %>% nrow() %>% as.numeric()
-
-	alive_stats <- rbind(count_alive, alive_stats)
-
-	alive_stats$yr[1] <- i
-
-}
-```
-
-Let's rename that first column.
-
-```
-colnames(alive_stats)[1] <- c("count")
-```
-
-And of course, we can plot this out.
-
-```
-alive_stats %>% ggplot(aes(x=yr, y=count)) + geom_bar(stat="identity")
-```
-
-
-### Hands-on — Part 2
-
-
-We're going to be learning about tidy data from the creator of the tidyverse, Hadley Wickham. This tutorial is adapted from his [Data Science in the Tidyverse](https://github.com/hadley/data-science-in-tidyverse/tree/master/slides) workshop.
-
-**1. So what's tidy data?**
-
-<img src ="imgs/1.png" width = "600">
-
-It's easy to work with. For example, you can quickly calculate a per capita rate if you already have the population data right there.
-
-Here are the main functions we'll be working with.
-
-<img src ="imgs/2.png" width = "600">
-
-**2. Let's look at some untidy data**
-
-Add a dataset manually.
-
-```
-cases <- tribble(
-  ~Country, ~"2011", ~"2012", ~"2013",
-      "FR",    7000,    6900,    7000,
-      "DE",    5800,    6000,    6200,
-      "US",   15000,   14000,   13000
-)
-```
-Take a look. What are our variables?
-
-```
-head(cases)
-```
-
-* Country
-* Year
-* Count
-
-Take out a piece of paper and draw what it would look like if we rearranged our data so it had three columns: country, year, n
-
-**3. Gather**
-
-Let's parse this
-
-And then run it oursevles.
-
-<img src ="imgs/3.png" width = "600">
-
-
-```
-cases %>% gather(key = "year", value = "n", 2:4)
-```
-Neat! Now we've got something we could chart. Try this.
-
-```
-cases %>% gather(key = "year", value = "n", 2:4) %>% ggplot(aes(x= year, y=n, group=Country, color=Country)) + geom_line(lwd=3)
-```
-
-**4. Spread**
-
-Let's use some new data.
-
-```
-pollution <- tribble(
-       ~city,   ~size, ~amount,
-  "New York", "large",      23,
-  "New York", "small",      14,
-    "London", "large",      22,
-    "London", "small",      16,
-   "Beijing", "large",     121,
-   "Beijing", "small",     56
-)
-
-head(pollution)
-```
-
-The second column is *particle size*. What if we wanted to add together the particle counts for each city?
-
-Right now, we can't.
-
-But ... if 'large' and 'small' were their own columns, then we could. What would our dataset look like if the three columns were city, large, and small.
-
-Draw it out on your piece of paper.
-
-To make that happen, we need `spread`.
-
-<img src ="imgs/4.png" width = "600">
-
-```
-pollution %>% spread(size, amount)
-```
-
-Nice. Now we can create the total particle count for each city.
-
-```
-pollution %>% mutate(total = large + small)
-```
-
-Or the percent of particles that are large. How would we do that?
-
-If we have any extra time, let's do Final Project updates.
-
+* An example of [cool stuff](http://graphics.latimes.com/calmap-california-county-unemployment/) you can do with unemployment data.
+* Quartz on [how the unemployment rate can mislead](https://qz.com/877432/the-us-unemployment-rate-measure-is-deceptive-and-doesnt-need-to-be/)
 
 ---
 
 ### Homework
 
-* **TURN IN YOUR DRAFT!** It's due Sunday at 5 PM.
-
-
-* [Go to this page and register for a Census API Key](https://api.census.gov/data/key_signup.html)
-* Read these data stories to prep for next week:
-	* [Battling treacherous office chairs and aching backs, aging cops and firefighters miss years of work and collect twice the pay](https://www.latimes.com/local/california/la-me-drop-20180203-htmlstory.html)
-	* [Veteran L.A. cops and firefighters can work one shift, then collect double pay for years](https://www.latimes.com/local/lanow/la-me-drop-one-day-rule-20180218-story.html)
-		* Optional but interesting: [Before becoming LAPD chief, Moore retired, collected a $1.27-million payout, then was rehired
-](https://www.latimes.com/local/lanow/la-me-chief-drop-2018-08012-story.html)
-	* [L.A. and Orange counties are an epicenter of overcrowded housing](https://www.latimes.com/local/la-me-crowding-20140308-story.html)
-	* [Mapping the country's crowded homes](http://graphics.latimes.com/crowding-map/)
+* You are working on your Final Project
+* Story memo: 50-100 words about Final Project progress over last week

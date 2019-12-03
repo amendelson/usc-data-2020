@@ -71,95 +71,196 @@ anime.timeline({loop: true})
 
 
 # Week 3
-This week, we're diving head first into mapping.
+This week, we're diving into data analysis in R.
 
 ---
 
 ### Lecture
 
-[Slides](https://docs.google.com/presentation/d/1HXFaS8TLeBzc9yq2wx7aV40ZqtBpApvpeznJ6x2QNek/edit#slide=id.p)
+No lecture. All coding!
 
 ---
 
 ### Hands-on
 
-**1. Download these**
+**1. Getting started**
 
-[Link to pre-k data](../data/prek_sites.csv) | [Caltrans transpo GIS data](http://www.dot.ca.gov/hq/tsip/gis/datalibrary/) (find the state highway data)
+Let's install and load a couple packages we'll need today.
 
-**2. Unzip the highways shapefile and double click to open in QGIS**
+```
+install.packages("tidyverse")
+install.packages("gapminder")
+```
 
-![](imgs/1.png)
+Installing them doesn't make them available, however. We need to load them.
 
-Cool, it's every highway in the state! Let's take a second to unpack what we see here.
+```
+library(tidyverse)
+library(gapminder)
+```
 
-Then, let's:
+Let's use some of the commands we learned last week to figure out what `gapminder` is.
 
-* zoom in/out
-* click with the info tool to learn more
-* change the color, shape and transparency of the lines (double-click on the name in the layers panel)
-* open up the attribute table (right click on the name in the layers panel)
-* figure out what the CRS is
-	* Wait. [What's a CRS?](https://github.com/d3/d3-geo-projection)
+```
+head(gapminder)
+summary(gapminder)
+str(gapminder)
+glimpse(gapminder)
+```
 
-**3. Double click the Pre-K sites data to open in QGIS**
+Let's try a new one
 
-Wait, that doesn't work.
+```
+arrange(gapminder, pop)
+```
 
-Let's inspect what we see there. Any clues on where the geographic data might be?
+Interesting. What does this do?
 
-**4. Brining in a spreadsheet into a map**
-
-How do we import it? Go to Layer > Add Layer > Add Delimited Text Layer
-
-**5. Figure out if our school sites are within 500 feet of a state highway**
-
-Let's install MMQGIS.
-
-Plugins > Manage and Install Plugins > [MMQGIS](http://michaelminn.com/linux/mmqgis/)
-
-Now we can create a buffer. Should we create it on the Pre-K sites, or on the highways?
-
-Now go to MMQGIS > Create > Create Buffers
-
-<img src="imgs/2.png" width="400">
-
-Your maps should look like this when it's done:
-
-![](imgs/3.png)
-
-Cool. It's all there now. Let's remove the original highway shapefile.
+```
+arrange(gapminder, desc(pop))
+```
 
 
-**6. How do we figure out which sites are within the 500 foot buffer?**
+This lesson is adapted from Hadley Wickham's great [Data Science In Tidyverse](https://github.com/hadley/data-science-in-tidyverse/blob/master/slides/02-Transform.pdf) workshop.
 
-We need to join the 2 layers.
+**2. How can we work with only the data we want?**
 
-What's that mean?
+Like, we probably don't want to review the data for every nation at once. How can we ask more focused, targeted questions?
 
-Here's how we do it:
+<img src ="imgs/1.png" width = 600>
+<img src ="imgs/2.png" width = 600>
 
-<img src="imgs/4.png" width="400">
+Let's try it out.
 
-It might take a couple minutes (or more) to run. Why?
+```
+filter(gapminder, country == "United States")
+```
+
+What do these do.
+
+```
+filter(gapminder, continent == "Americas")
+filter(gapminder, year > 1980)
+filter(gapminder, pop > 20000000 & pop < 100000000)
+filter(gapminder, pop > 20000000 & continent == "Americas" & gdpPercap <= 4000)
+filter(gapminder, pop > 20000000 & continent != "Americas" & gdpPercap <= 4000)
+
+```
+
+How would you look filer for countries in Asia with high life expectancies?
+
+**3. Arrange**
+
+What if we want to see the countries with the highest life expectancies. Or the lowest? That's where *arrange* comes in.
+
+<img src ="imgs/3.png" width = 600>
+<img src ="imgs/4.png" width = 600>
+
+We just saw it, but worth reiterating: This nifty function reorders data however we tell it to. Try that:
+
+```
+arrange(gapminder, lifeExp)
+```
+
+You can also arrange from highest to lowest, or in descending order.
+
+```
+arrange(gapminder, desc(lifeExp))
+
+```
+
+**5. Piping**
+
+What if you want to do two things at once?
+
+You *could* do this
+
+```
+gapminder_2007 <- filter(gapminder, year == 2007)
+arrange(gapminder_2007, desc(lifeExp))
+```
+
+Or you could save yourself some time and energy, and embrace the pipe: **%>%**
+
+Basically, it transfers the last command you made to the next command.
+
+<img src ="imgs/5.png" width = 600>
+
+Let's try that ourselves
+
+```
+gapminder %>% filter(country == "Canada")
+```
+
+Awesome. But the power really comes in when you use it more than once.
+
+```
+gapminder %>%
+	filter(year == 2007) %>%
+	arrange(desc(lifeExp))
+```
+
+You can also use command shift M on a Mac or ctrl shift M on windows to get one.
+
+**6. Mutate**
+
+How can you create a new vector (a.k.a. column) on your data frame? By using *mutate*.
+
+Let's try it out, by looking at our dataframe first:
+
+```
+head(gapminder)
+```
+
+OK, so to get the GDP, we could do the following:
+
+```
+gapminder %>% mutate(gpd = gdpPercap * pop)
+```
+
+And what if we wanted to use a pipe to sort it?
+
+```
+gapminder %>% mutate(gdp = gdpPercap * pop) %>% arrange(desc(gdp))
+```
 
 
-**7. That looks like all of them?**
+**8. Charting**
 
-Let's open up the attribute table and see what actually happened under the hood.
+Let's make a quick chart by first using filter.
 
-* How can we select just the ones that really joined?
-* How can we export this as a spreadsheet and analyze for our story (we'll go deeper into this, time pending)
+```
+us <- filter(gapminder, country == "United States")
+```
 
+We're gonna feed that into **ggplot2**, the tidyverse's beloved package for creating charts.
+
+The syntax of ggplot is a little different, you'll notice it uses plus signs instead of the pipe. Try this out:
+
+```
+ggplot(us, aes(x = year, y = lifeExp)) +
+ geom_line()
+```
+
+And you know what? It's not really any harder to plot every country in the Americas at once.
+
+```
+gapminder %>% filter(continent == "Americas") %>% ggplot(aes(x=year, y=lifeExp)) + geom_line(aes(color=country), lwd=1.5, alpha=.65)
+```
+
+What else could we do here?
+
+Can we make a small multiples chart?
 
 ---
 
 ### Links
 
-* [QGIS tutorials](https://www.qgistutorials.com/en/) — great resource
-* [Polluted Preschools: 169 LA childcare centers are too close to freeways](https://www.scpr.org/news/2016/03/29/58878/pollution-near-preschools-is-impacting-nearly-10-0/)
+* Hadley Wickham's [great tidyverse tutorials](https://github.com/hadley/data-science-in-tidyverse)
 
 ---
 
 ### Homework
-* Submit story pitch for group data story, including ideas for story and graphic, and what datasets you could use. Due by SUNDAY @ 5.
+
+* **Final Project**: You should be working on drafts of story and graphics, looking for unanswered questions. The rough draft is due in just 18 days!
+* Story memo: 50-100 words about Final Project progress over last week
