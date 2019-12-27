@@ -108,5 +108,5 @@ border apprehensions](https://www.washingtonpost.com/graphics/2019/national/trum
 
 ### Homework
 
-* **Important**: Sign up [using this spreadsheet](https://docs.google.com/spreadsheets/d/14IInAih3Vt4fj4e2IH1uIUXeJbnzcM8XhdVx9w-V8oc/edit?usp=sharing) to do a critique
-* **Also important**: Final Project: Every group pitches 3 ideas by Sunday @ 5 PM
+* **Important**: Sign up [using this spreadsheet](https://docs.google.com/spreadsheets/d/14IInAih3Vt4fj4e2IH1uIUXeJbnzcM8XhdVx9w-V8oc/edit#gid=0) to do a critique
+* **Also important**: Final Project: Every group pitches 3 ideas by Monday @ 5 PM
