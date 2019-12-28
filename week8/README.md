@@ -358,5 +358,5 @@ If we have extra time, we'll work on adding [popup text](https://rstudio.github.
 
 * Map a census dataset.
 	* [Go here](https://censusreporter.org) to explore datasets and find their table names.
+* Write 100 or so words about what you learned by mapping the data, possible sotries you could do based of this analysis.
 * I want to see different colors and basemaps on your map.
-* Send email to Aaron vote: What do you want to do in week 15. Census data in R? Something else?

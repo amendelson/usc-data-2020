@@ -140,11 +140,5 @@ Article from lecture
 
 ### Homework
 
-[**Fill out the Mid-Semester Survey**](https://goo.gl/forms/9oXNoWqCruyBkdTD3). Please complete by Wednesday at 5 PM.
-
-Install some stuff, create some accounts.
-
-* R: [Go here](https://cran.cnr.berkeley.edu/) to install R
-* Github: [Go here](https://github.com/) to create a Github account. Or, if you already have one, log in to amke sure you know the username and password.
-* Miniconda: [Go here](https://conda.io/miniconda.html) to download and install. Download the `python 2.7` version.
+* Mapping Assignment 3: I want you to map a dataset related to your Final Project or capstone. Every group member needs to make their own map.
 * Story memo: 50-100 words about Final Project progress over last week
