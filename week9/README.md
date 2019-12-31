@@ -289,6 +289,4 @@ Let's commit again to Github. And with any remaining time we can
 <div class ="header">
 <h1><font color = "White">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Spring break&nbsp;!&nbsp;!&nbsp;!
 
-</div>
-</h1>
-</div>
+
