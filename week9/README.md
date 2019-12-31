@@ -287,5 +287,7 @@ Let's commit again to Github. And with any remaining time we can
 ### Homework
 
 <div class ="header">
-<h1><font color = "White">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Spring break&nbsp;!&nbsp;!&nbsp;!</h1>
+<h1><font color = "White">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Spring break&nbsp;!&nbsp;!&nbsp;!
+
+</h1>
 </div>
