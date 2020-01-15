@@ -97,7 +97,7 @@ We'll also do some housekeeping and get to know one another.
 
 ### Homework
 
-* [Fill out the survey](https://docs.google.com/forms/d/e/1FAIpQLSe4a5ZWgu1Tde99acbMBysX4QuS0VWtYnp0cDQb97HWGfGq5w/viewform?usp=sf_link)
+* [Fill out the survey](https://forms.gle/9pEoHBL82tSPCN3YA)
 
 * [Install or update R](https://www.rstudio.com/products/rstudio/download/)
 
