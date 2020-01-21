@@ -73,7 +73,7 @@ anime.timeline({loop: true})
 
 # Week 9
 
-By popular demand, we'll be spending some more time with R, getting more practice with Github, and exploring other ways to use R.
+We'll be spending some more time with R, getting more practice with Github, and exploring other ways to use R.
 
 ---
 
@@ -287,38 +287,6 @@ Let's commit again to Github. And with any remaining time we can
 ### Homework
 
 <div class ="header">
-<script>
-var end = new Date('04/30/2019 5:00 PM');
+<h1><font color = "White">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Spring break&nbsp;!&nbsp;!&nbsp;!
 
-    var _second = 1000;
-    var _minute = _second * 60;
-    var _hour = _minute * 60;
-    var _day = _hour * 24;
-    var timer;
 
-    function showRemaining() {
-        var now = new Date();
-        var distance = end - now;
-        if (distance < 0) {
-
-            clearInterval(timer);
-            document.getElementById('countdown').innerHTML = 'EXPIRED!';
-
-            return;
-        }
-        var days = Math.floor(distance / _day);
-        var hours = Math.floor((distance % _day) / _hour);
-        var minutes = Math.floor((distance % _hour) / _minute);
-        var seconds = Math.floor((distance % _minute) / _second);
-
-        document.getElementById('countdown').innerHTML = days + ' days ';
-        document.getElementById('countdown').innerHTML += hours + ' hours ';
-        document.getElementById('countdown').innerHTML += minutes + ' mins until Final Project drafts are due';
-
-    }
-
-    timer = setInterval(showRemaining, 1000);
-</script><h1>
-<div id="countdown">
-</h1>
-</div>

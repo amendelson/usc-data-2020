@@ -106,7 +106,7 @@ And then you'll use QGIS to make another map using the data.
 
 ...
 
-([Here is something we will need](https://data.ca.gov/dataset/ca-geographic-boundaries/resource/091ff50d-bb24-4537-a974-2ce89c6e8663))
+([Here is something we will need](https://data.ca.gov/dataset/ca-geographic-boundaries))
 
 ---
 
@@ -119,5 +119,4 @@ And then you'll use QGIS to make another map using the data.
 
 ### Homework
 
-* You are working on your Final Project
-* Story memo: 50-100 words about Final Project progress over last week
+* **TURN IN YOUR DRAFT!** It's due Sunday at 5 PM.

@@ -85,18 +85,22 @@ We'll also do some housekeeping and get to know one another.
 
 ### Links
 
-[QGIS](https://download.qgis.org/)
-
 [R Studio](https://www.rstudio.com/products/rstudio/download/)
 
 [R](https://cran.rstudio.com/)
 
-[Arrest data](https://data.lacity.org/A-Safe-City/Arrest-Data-from-2010-to-Present/yru6-6re4)
+[QGIS](https://download.qgis.org/)
+
+[Traffic count data](https://data.lacity.org/A-Livable-and-Sustainable-City/LADOT-Traffic-Counts-Summary/94wu-3ps3)
 
 ---
 
 ### Homework
 
-* [Fill out the survey](https://docs.google.com/forms/d/e/1FAIpQLSe4a5ZWgu1Tde99acbMBysX4QuS0VWtYnp0cDQb97HWGfGq5w/viewform?usp=sf_link)
-* [Install or update QGIS](https://download.qgis.org/)
+* [Fill out the survey](https://forms.gle/9pEoHBL82tSPCN3YA)
+
+* [Install or update R](https://www.rstudio.com/products/rstudio/download/)
+
+* [Install or update R Studio](https://www.rstudio.com/products/rstudio/download/)
+
 * Email Aaron (aaron.a.mendelsonATgmailDOTcom) if you want to choose your own group for the Final Project

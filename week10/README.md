@@ -162,4 +162,6 @@ Let's open up the attribute table and see what actually happened under the hood.
 ---
 
 ### Homework
-* Submit story pitch for group data story, including ideas for story and graphic, and what datasets you could use. Due by SUNDAY @ 5.
+
+* **Final Project**: You should be working on drafts of story and graphics, looking for unanswered questions. The rough draft is due in just 18 days!
+* Story memo: 50-100 words about Final Project progress over last week

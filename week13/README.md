@@ -70,7 +70,7 @@ anime.timeline({loop: true})
 </script>
 
 # Week 13
-This week, we're gonna talk election maps and interactivity. And then we'll start on an interactive map of our own — and start coding for the first time this semester.
+This week, we're gonna talk election maps and interactivity. And then we'll start on an interactive map of our own.
 
 ---
 
@@ -137,6 +137,3 @@ Once you do that, write a pitch of 100 words for a data story you could do with 
 Please send the map by 5 PM Monday.
 
 **Due Monday at 5 PM**.
-
-* Final Project: Your data should be set, and you should be reporting and writing as you go.
-* Story memo: 50-100 words about Final Project progress over last week
