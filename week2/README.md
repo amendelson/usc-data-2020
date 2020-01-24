@@ -77,9 +77,9 @@ This week, we're going to talk about what makes a great data story, and how you 
 
 ### Survey responses
 
-<img src="survey1.png" width = "600">
+<img src="survey1.png" width = "1000">
 
-<img src="survey2.png" width = "600">
+<img src="survey2.png" width = "1000">
 
 ---
 
