@@ -128,6 +128,7 @@ This lesson is adapted from Hadley Wickham's great [Data Science In Tidyverse](h
 Like, we probably don't want to review the data for every nation at once. How can we ask more focused, targeted questions?
 
 <img src ="imgs/1.png" width = 600>
+
 <img src ="imgs/2.png" width = 600>
 
 Let's try it out.
