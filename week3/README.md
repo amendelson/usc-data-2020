@@ -127,9 +127,9 @@ This lesson is adapted from Hadley Wickham's great [Data Science In Tidyverse](h
 
 Like, we probably don't want to review the data for every nation at once. How can we ask more focused, targeted questions?
 
-<img src ="imgs/1.png" width = "600">
+<img src ="imgs/1.png" width = "800">
 
-<img src ="imgs/2.png" width = "600">
+<img src ="imgs/2.png" width = "800">
 
 Let's try it out.
 
@@ -154,8 +154,8 @@ How would you look filer for countries in Asia with high life expectancies?
 
 What if we want to see the countries with the highest life expectancies. Or the lowest? That's where *arrange* comes in.
 
-<img src ="imgs/3.png" width = "600">
-<img src ="imgs/4.png" width = "600">
+<img src ="imgs/3.png" width = "800">
+<img src ="imgs/4.png" width = "800">
 
 We just saw it, but worth reiterating: This nifty function reorders data however we tell it to. Try that:
 
@@ -185,7 +185,7 @@ Or you could save yourself some time and energy, and embrace the pipe: **%>%**
 
 Basically, it transfers the last command you made to the next command.
 
-<img src ="imgs/5.png" width = "600">
+<img src ="imgs/5.png" width = "800">
 
 Let's try that ourselves
 
