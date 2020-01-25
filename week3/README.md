@@ -263,4 +263,4 @@ Can we make a small multiples chart?
 
 ### Homework
 
-* Submit story pitch for group data story, including ideas for story and graphic, and what datasets you could use. Due by SUNDAY @ 5.
+* Submit story pitch for group data story, including ideas for story and graphic, and what datasets you could use. Due by MONDAY @ 5.
