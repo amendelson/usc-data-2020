@@ -130,7 +130,7 @@ This class will involve the use of technical tools, and coding. But if you want 
 
 * **[Week One](week1/)**: Course overview. Introductions.
 * **[Week Two](week2/)**: Class Project discussion.
-* **Week Three**: Visualizing Data with ggplot, Part 1 – faceting. Class project discussion.
+* **[Week Three](week3/)**: Visualizing Data with ggplot, Part 1 – faceting. Class project discussion.
 * **Week Four**: Visualizing Data with ggplot, Part 2 – layers and interactivity
 * **Week Five**: Class project discussion
 * **Week Six**: Writing functions and loops in R
