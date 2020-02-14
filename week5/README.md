@@ -111,4 +111,4 @@ Wildfire, Let the Forest Burn](https://www.nytimes.com/interactive/2018/11/29/op
 ### Homework
 
 * Start reporting.
-* File your first story memo.
+* File another story memo. Due before class.
