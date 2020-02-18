@@ -367,3 +367,4 @@ If we have any extra time (doubtful), let's do Final Project updates.
 	* If you need inspiration, use code from our walkthrough today. Or, take a look at some of these simple cool R chart examples.
 	* Due on Monday by 5 PM.
 * [Go to this page and register for a Census API Key](https://api.census.gov/data/key_signup.html)
+* [Create](https://github.com/join) or make sure you have a Github account and know the PW
