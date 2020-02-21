@@ -133,7 +133,7 @@ This class will involve the use of technical tools, and coding. But if you want 
 * **[Week Three](week3/)**: Visualizing Data with ggplot, Part 1 – faceting. Class project discussion.
 * **[Week Four](week4/)**: Visualizing Data with ggplot, Part 2 – layers and interactivity
 * **[Week Five](week5/)**: Class project discussion
-* **Week Six**: Writing functions and loops in R
+* **[Week Six](week6/)**: Writing functions and loops in R
 * **Week Seven**: Tidyuniverse in R – cleaning and transforming data.
 * **Week Eight**: Tidyuniverse in R – modeling data. Class project discussion
 * **Week Nine**: TidyCensus in R – the best way to reign in Census data
