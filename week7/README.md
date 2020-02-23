@@ -71,115 +71,131 @@ anime.timeline({loop: true})
 
 # Week 7
 
-This week, we're going to bring together the two big halves of our class ... and do some mapping in R.
+What makes data tidy? Let's find out today.
 
-Yes, you can do GIS in R.
+(If we have time, we'll also bring together the two big halves of our class ... and do some mapping in R.)
+
+### Quick Lecture
+
+[Slides](https://docs.google.com/presentation/d/1SlCA6neTiBd6G7ZVfJohozj0AYrhkDS_Nz_ttENfvNM/edit#slide=id.p)
 
 ---
 
-### Hands-on
 
-### Part one: Github
+### Hands-on — Part 1
 
-Let's download [the file we used to scrape the governor data](https://github.com/amendelson/usc-data-2020/blob/gh-pages/week12/govs_scraping.R).
 
-That was a pretty cool thing we did, so we want to save it for the future, and to share it with the world.
+We're going to be learning about tidy data from the creator of the tidyverse, Hadley Wickham. This tutorial is adapted from his [Data Science in the Tidyverse](https://github.com/hadley/data-science-in-tidyverse/tree/master/slides) workshop.
 
-First, create a folder somewhere that you keep code and put that in it.
+**1. So what's tidy data?**
 
-Put your R code inside it.
+<img src ="imgs/1.png" width = "600">
 
-Now, fire up your terminal/command prompt etc. Navigate to your directory using one of these, with the correct path.
+It's easy to work with. For example, you can quickly calculate a per capita rate if you already have the population data right there.
 
+Here are the main functions we'll be working with.
+
+<img src ="imgs/2.png" width = "600">
+
+Let's load the tidyverse.
 ```
-chdir /Code/my_folder/
-cd /Code/my_folder/
-```
-
-Alright, now let's check if you've got git installed.
-
-```
-git --version
+install.packages("tidyverse")
+library(tidyverse)
 ```
 
-Hopefully, something pops up telling you that you've got git. If not, [check out these instructions](https://www.firstpythonnotebook.org/prerequisites/git.html).
 
-From here on out, we're borrowing heavily from [a great tutorial](https://www.firstpythonnotebook.org) of interest to all you Python mavens out there.
+**2. Let's look at some untidy data**
 
-The first step in working with git is to convert a directory on your computer into a repository that will have its contents tracked going forward.
-
-You do that by returning to your terminal. If your notebook server is running, hit the CTRL-C key combination to return the standard command line. Then entering the following:
+Add a dataset manually.
 
 ```
-$ git init .
+cases <- tribble(
+  ~Country, ~"2011", ~"2012", ~"2013",
+      "FR",    7000,    6900,    7000,
+      "DE",    5800,    6000,    6200,
+      "US",   15000,   14000,   13000
+)
 ```
-
-That will instruct git to initialize a new repository in your current folder, which is represented by the period.
-
-If this is your first time using git, you should configure git with your name and email. This will ensure that your work is properly logged by the respository’s history file. Like the init command above, this is something that only needs to be done once.
-
-```
-$ git config --global user.email "your@email.com"
-$ git config --global user.name "your name"
-```
-
-Now you’re ready to start logging your work. Changes to you code are logged by git in batches known as “commits.”
-
-It is not required but a good first step before committing any work is to run git’s status command, which will output the current state of your repository.
+Take a look. What are our variables?
 
 ```
-git status
+head(cases)
 ```
 
-Since your repository is brand new, all of the files will be listed as “untracked.” That means that while git sees that these files exist it is not monitoring them for changes.
+* Country
+* Year
+* Count
 
-The first step in logging your work is to ask git to start tracking your files using the add command.
+Take out a piece of paper and draw what it would look like if we rearranged our data so it had three columns: country, year, n
 
-In this repository, we will go ahead and add any and everything.
+**3. Gather**
 
-```
-$ git add .
-```
+Let's parse this
 
-Now, let's check the status again.
+And then run it oursevles.
 
-```
-git status
-```
+<img src ="imgs/3.png" width = "600">
 
-Log its addition with git’s commit command. You must include a personalized message, which you can provide along with the command by adding on the -m flag along with a description of the work you’ve done.
 
 ```
-git commit -m "First commit"
+cases %>% gather(key = "year", value = "n", 2:4)
 ```
-
-That’s it. You’ve made your first git commit.
-
-We're not done yet. We still need to publish this to Github.
-
-Visit GitHub and create a new public repository named usc-r. Don’t check “Initialize with README.” You want to start with a blank repository.
-
-This will create a new repository page. It needs to be synchronized with the local repository we’ve already created.
-
-You can connect your local directory to GitHub’s site by returning to the terminal and using git’s “remote add” command to connect it with GitHub.
+Neat! Now we've got something we could chart. Try this.
 
 ```
-git remote add origin https://github.com/<yourusername>/usc-r.git
+cases %>% gather(key = "year", value = "n", 2:4) %>% ggplot(aes(x= year, y=n, group=Country, color=Country)) + geom_line(lwd=3)
 ```
 
-Next we’ll try “pushing” the latest commit from your repository up to GitHub. Assuming all of your work has been properly logged to your local repository, here’s what it takes.
+**4. Spread**
+
+Let's use some new data.
 
 ```
-git push origin master
+pollution <- tribble(
+       ~city,   ~size, ~amount,
+  "New York", "large",      23,
+  "New York", "small",      14,
+    "London", "large",      22,
+    "London", "small",      16,
+   "Beijing", "large",     121,
+   "Beijing", "small",     56
+)
+
+head(pollution)
 ```
 
-That ... should work! Congrats!
+The second column is *particle size*. What if we wanted to add together the particle counts for each city?
 
-I keep [this cheatsheet at my desk for answering Github Qs](https://github.github.com/training-kit/downloads/github-git-cheat-sheet.pdf)...it's helped out many times. You'll see there are many other commands.
+Right now, we can't.
 
-We'll come back to Github later, but for now ... let's map in R!
+But ... if 'large' and 'small' were their own columns, then we could. What would our dataset look like if the three columns were city, large, and small.
 
-### Part two: Mapping
+Draw it out on your piece of paper.
+
+To make that happen, we need `spread`.
+
+<img src ="imgs/4.png" width = "600">
+
+```
+pollution %>% spread(size, amount)
+```
+
+Nice. Now we can create the total particle count for each city.
+
+```
+pollution  %>% spread(size, amount) %>% mutate(total = large + small)
+```
+
+Or the percent of particles that are large. How would we do that?
+
+If we have any extra time (doubtful), let's do Final Project updates.
+
+
+---
+
+### Hands-on Part 2 — doing some new things
+
+### Part 2.1: Mapping
 
 **0. Why would you ever use R to do GIS work**
 
@@ -349,6 +365,8 @@ Alright. What does each line do? Let's play around with it and see what changes?
 And let's commit to Github.
 
 If we have extra time, we'll work on adding [popup text](https://rstudio.github.io/leaflet/popups.html) and [a legend](https://rstudio.github.io/leaflet/legends.html).
+
+
 
 ---
 
