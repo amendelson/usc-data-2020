@@ -219,13 +219,7 @@ library(leaflet)
 library(rgdal)
 ```
 
-Wait. Doesn't leaflet sound familiar?
-
-Well, it should. We made a leaflet map [back in Week 7](https://leafletjs.com/examples/choropleth/).
-
-We could even [remake that same choropleth we made, entirely within R](https://rstudio.github.io/leaflet/choropleths.html).
-
-But we'll try something new instead.
+Let's dive in.
 
 **2. Leaflet in R**
 
@@ -237,11 +231,11 @@ Download the shapefile of states from the U.S. Census [here](https://www.census.
 
 Unzip it and put it in the same folder we've been using today.
 
-Now we'll head back to our notebook and open it up. It should look something like this
+Now we'll head back to our script and open it up. It should look something like this
 
 ```
 states <- readOGR("path/to/yourfile/",
-  layer = "tl_2018_us_state", GDAL1_integer64_policy = TRUE)
+  layer = "tl_2019_us_state", GDAL1_integer64_policy = TRUE)
 ```
 
 Next let's select some states that are cool.
@@ -281,10 +275,12 @@ install.packages("tidycensus")
 library(tidycensus)
 ```
 
-To get the data from the Census' API, you need to provide the API Key you registered for.
+To get the data from the Census' API, you need to provide an API Key.
+
+You can — just this once — use mine.
 
 ```
-census_api_key("yourAPIhere", overwrite = FALSE, install = FALSE)
+census_api_key("9046904889c4bde2ce4e43d2e4709c89b16d26f5", overwrite = FALSE, install = FALSE)
 ```
 
 Once you've done that, you can quickly grab data. If you want to know the median rent by state in 1990 ... now you can.
@@ -296,7 +292,6 @@ m90 <- get_decennial(geography = "state", variables = "H043A001", year = 1990)
 It can also easily be plotted.
 
 ```
-library(tidyverse)
 m90 %>%
   ggplot(aes(x = value, y = reorder(NAME, value))) +
   geom_point()
@@ -362,8 +357,6 @@ states_with_rate %>% leaflet() %>% addTiles() %>%
 
 Alright. What does each line do? Let's play around with it and see what changes?
 
-And let's commit to Github.
-
 If we have extra time, we'll work on adding [popup text](https://rstudio.github.io/leaflet/popups.html) and [a legend](https://rstudio.github.io/leaflet/legends.html).
 
 
@@ -375,6 +368,6 @@ If we have extra time, we'll work on adding [popup text](https://rstudio.github.
 
 * Map a census dataset.
 	* [Go here](https://censusreporter.org) to explore datasets and find their table names.
-* Write 100 or so words about what you learned by mapping the data, possible sotries you could do based of this analysis.
+* Write 100 or so words about what you learned by mapping the data, possible stories you could do based of this analysis.
 * I want to see different colors and basemaps on your map.
 
