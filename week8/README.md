@@ -76,109 +76,114 @@ anime.timeline({loop: true})
 
 ---
 
-### Hands-on
+### Quick hands-on
 
-holding for a guest speaker...
+**3. Bring in census data, tidily and easily**
 
-### Intro to Github
-
-Let's download [the file we used to scrape the governor data](https://github.com/amendelson/usc-data-2020/blob/gh-pages/week12/govs_scraping.R).
-
-That was a pretty cool thing we did, so we want to save it for the future, and to share it with the world.
-
-First, create a folder somewhere that you keep code and put that in it.
-
-Put your R code inside it.
-
-Now, fire up your terminal/command prompt etc. Navigate to your directory using one of these, with the correct path.
+There's a great R package for importing census data. Let's install and load it.
 
 ```
-chdir /Code/my_folder/
-cd /Code/my_folder/
+library(leaflet)
+library(tidyverse)
 ```
 
-Alright, now let's check if you've got git installed.
-
 ```
-git --version
-```
-
-Hopefully, something pops up telling you that you've got git. If not, [check out these instructions](https://www.firstpythonnotebook.org/prerequisites/git.html).
-
-From here on out, we're borrowing heavily from [a great tutorial](https://www.firstpythonnotebook.org) of interest to all you Python mavens out there.
-
-The first step in working with git is to convert a directory on your computer into a repository that will have its contents tracked going forward.
-
-You do that by returning to your terminal. If your notebook server is running, hit the CTRL-C key combination to return the standard command line. Then entering the following:
-
-```
-$ git init .
+install.packages("tidycensus")
+library(tidycensus)
 ```
 
-That will instruct git to initialize a new repository in your current folder, which is represented by the period.
-
-If this is your first time using git, you should configure git with your name and email. This will ensure that your work is properly logged by the respository’s history file. Like the init command above, this is something that only needs to be done once.
+To get the data from the Census' API, you need to provide an API Key. Find yours and use it.
 
 ```
-$ git config --global user.email "your@email.com"
-$ git config --global user.name "your name"
+census_api_key("TK", overwrite = FALSE, install = FALSE)
 ```
 
-Now you’re ready to start logging your work. Changes to you code are logged by git in batches known as “commits.”
-
-It is not required but a good first step before committing any work is to run git’s status command, which will output the current state of your repository.
+Once you've done that, you can quickly grab data. If you want to know the median rent by state in 1990 ... now you can.
 
 ```
-git status
+m90 <- get_decennial(geography = "state", variables = "H043A001", year = 1990)
 ```
 
-Since your repository is brand new, all of the files will be listed as “untracked.” That means that while git sees that these files exist it is not monitoring them for changes.
-
-The first step in logging your work is to ask git to start tracking your files using the add command.
-
-In this repository, we will go ahead and add any and everything.
+It can also easily be plotted.
 
 ```
-$ git add .
+m90 %>%
+  ggplot(aes(x = value, y = reorder(NAME, value))) +
+  geom_point()
 ```
 
-Now, let's check the status again.
+We can also grab data from the more-frequently-updated American Community Survey. It's like a rolling Census that's being conducted all the time.
+
+Let's look at public transit.
 
 ```
-git status
+transpo <- get_acs(geography = "state", variables = "B08006_008", geometry = FALSE, survey = "acs5", year = 2017)
 ```
 
-Log its addition with git’s commit command. You must include a personalized message, which you can provide along with the command by adding on the -m flag along with a description of the work you’ve done.
-
 ```
-git commit -m "First commit"
+head(transpo)
 ```
 
-That’s it. You’ve made your first git commit.
-
-We're not done yet. We still need to publish this to Github.
-
-Visit GitHub and create a new public repository named usc-r. Don’t check “Initialize with README.” You want to start with a blank repository.
-
-This will create a new repository page. It needs to be synchronized with the local repository we’ve already created.
-
-You can connect your local directory to GitHub’s site by returning to the terminal and using git’s “remote add” command to connect it with GitHub.
+Interesting. But what we really want is the **rate** of transit riders. Not the raw number. So let's get that, starting with the total number of folks who commute to work.
 
 ```
-git remote add origin https://github.com/<yourusername>/usc-r.git
-```
-
-Next we’ll try “pushing” the latest commit from your repository up to GitHub. Assuming all of your work has been properly logged to your local repository, here’s what it takes.
+transpo_total <- get_acs(geography = "state", variables = "B08006_001", geometry = FALSE, survey = "acs5", year = 2017)
+head(transpo_total)
 
 ```
-git push origin master
+
+Alright, now we need to get these ... together in the same data frame! That's where the `join` comes in. We did some of these in QGIS. What could we use in these two datasets to link them up?
+
+**4. A detour into joins**
+
+All you need to join is a common column. Here's how it works in tidyverse.
+
+```
+transpo <- transpo %>% left_join(transpo_total, by = "NAME")
 ```
 
-That ... should work! Congrats!
+Now we can get the rate.
 
-I keep [this cheatsheet at my desk for answering Github Qs](https://github.github.com/training-kit/downloads/github-git-cheat-sheet.pdf)...it's helped out many times. You'll see there are many other commands.
+```
+transpo$rate <- transpo$estimate.x / transpo$estimate.y * 100
+head(transpo)
+```
 
-We'll come back to Github later, but for now ... let's map in R!
+**5. Map out (after another join)**
+
+We need to join that transportation data to our shapefile. Unfortunately, the syntax there is a little different. Fortunately, it does work.
+
+For this, we'll need to bring back the states shapefile we used last week,
+
+```
+library(rgdal)
+states <- readOGR("path/to/yourfile/",
+  layer = "tl_2019_us_state", GDAL1_integer64_policy = TRUE)
+```
+
+Then we can do a join.
+
+```
+states_with_rate <- sp::merge(states, transpo, by = "NAME")
+```
+
+Let's try this out.
+
+```
+qpal <- colorQuantile("PiYG", states_with_rate$rate, 9)
+
+
+states_with_rate %>% leaflet() %>% addTiles() %>%
+  addPolygons(weight = 1, smoothFactor = 0.5, opacity = 1.0, fillOpacity = 0.5,
+    color = ~qpal(rate),
+    highlightOptions = highlightOptions(color = "white", weight = 2,
+      bringToFront = TRUE))
+```
+
+Alright. What does each line do? Let's play around with it and see what changes?
+
+If we have extra time, we'll work on adding [popup text](https://rstudio.github.io/leaflet/popups.html) and [a legend](https://rstudio.github.io/leaflet/legends.html).
+
 
 
 
