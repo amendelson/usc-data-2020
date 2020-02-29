@@ -78,7 +78,7 @@ anime.timeline({loop: true})
 
 ### Quick hands-on
 
-**3. Bring in census data, tidily and easily**
+**1. Bring in census data, tidily and easily**
 
 There's a great R package for importing census data. Let's install and load it.
 
@@ -134,7 +134,7 @@ head(transpo_total)
 
 Alright, now we need to get these ... together in the same data frame! That's where the `join` comes in. We did some of these in QGIS. What could we use in these two datasets to link them up?
 
-**4. A detour into joins**
+**2. A detour into joins**
 
 All you need to join is a common column. Here's how it works in tidyverse.
 
@@ -149,7 +149,7 @@ transpo$rate <- transpo$estimate.x / transpo$estimate.y * 100
 head(transpo)
 ```
 
-**5. Map out (after another join)**
+**3. Map out (after another join)**
 
 We need to join that transportation data to our shapefile. Unfortunately, the syntax there is a little different. Fortunately, it does work.
 
