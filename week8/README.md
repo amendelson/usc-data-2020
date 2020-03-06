@@ -191,6 +191,8 @@ If we have extra time, we'll work on adding [popup text](https://rstudio.github.
 
 ### Homework
 
-* Final Project: Your data should be set, and you should be reporting and writing as you go.
-* Story memo: 50-100 words about Final Project progress over last week
 * Github: Create an account if you don't already have one. If you do, make sure you know the password.
+* HW: Finish coding if we didn't in class.
+* Final Project: Your data analysis should almost done. You should be reporting and writing as you go.
+* Story memo: 50-100 words about Final Project progress over last week
+
