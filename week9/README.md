@@ -82,9 +82,7 @@ We'll be spending some more time with R, getting more practice with Github, and 
 
 ## Part 0: Intro to Github
 
-Let's download [the file we used to scrape the governor data](https://github.com/amendelson/usc-data-2020/blob/gh-pages/week12/govs_scraping.R).
-
-That was a pretty cool thing we did, so we want to save it for the future, and to share it with the world.
+Let's use an R script you've created in this class for this part of the lesson.
 
 First, create a folder somewhere that you keep code and put that in it.
 
@@ -109,7 +107,7 @@ From here on out, we're borrowing heavily from [a great tutorial](https://www.fi
 
 The first step in working with git is to convert a directory on your computer into a repository that will have its contents tracked going forward.
 
-You do that by returning to your terminal. If your notebook server is running, hit the CTRL-C key combination to return the standard command line. Then entering the following:
+Enter the following:
 
 ```
 $ git init .
@@ -204,7 +202,7 @@ Do that, and then let's spend a moment examining how our R code translates into 
 
 With **tidycensus**, you can actually download the shape files with the data you want already attached. No joins necessary.
 
-I didn't tell you this last week ... because it's important to learn about joins the hard way.
+I didn't tell you this in previous weeks ... because it's important to learn about joins the hard way.
 
 So let's delete what's already in our markdown file. And create our first code chunk.
 
@@ -284,19 +282,15 @@ lac_tidy %>%
 	  labs(title="Percent unemployed in Los Angeles")```
 ```
 
+Neat. Let's knit it and see what that looks like.
+
 Thanks to [this great tutorial for our inspiration here](https://github.com/andrewbtran/NICAR-2019-mapping/blob/master/01_maps_code.Rmd).
 
 ## Let's commit that to Github
 
 We're repurposing this from [last week](https://amendelson.github.io/usc-data-2020/week8/).
 
-Start by opening your terminal. Punch in the following:
-
-```
-$ git init .
-```
-
-That will instruct git to initialize a new repository in your current folder, which is represented by the period.
+Start by opening your terminal. Make sure you are in your new folder.
 
 Now you’re ready to start logging your work. Changes to you code are logged by git in batches known as “commits.”
 
@@ -332,17 +326,7 @@ That’s it. You’ve made your first git commit.
 
 We're not done yet. We still need to publish this to Github.
 
-Visit GitHub and create a new public repository named mapping-transforming-r. Don’t check “Initialize with README.” You want to start with a blank repository.
-
-This will create a new repository page. It needs to be synchronized with the local repository we’ve already created.
-
-You can connect your local directory to GitHub’s site by returning to the terminal and using git’s “remote add” command to connect it with GitHub.
-
-```
-git remote add origin https://github.com/<yourusername>/usc-r.git
-```
-
-Next we’ll try “pushing” the latest commit from your repository up to GitHub. Assuming all of your work has been properly logged to your local repository, here’s what it takes.
+We’ll try “pushing” the latest commit from your repository up to GitHub. Assuming all of your work has been properly logged to your local repository, here’s what it takes.
 
 ```
 git push origin master
@@ -381,8 +365,6 @@ Let's commit again to Github. And with any remaining time we can
 1) meet in Final Project groups
 
 2) explore some of those widgets
-
-3) or check out a couple of wild R packages that caught your prof's eye recently, [Mapdeck](https://symbolixau.github.io/mapdeck/articles/layers.html) and [Rayshader](https://www.rayshader.com/)
 
 ---
 
