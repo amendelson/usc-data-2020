@@ -136,7 +136,7 @@ This class will involve the use of technical tools, and coding. But if you want 
 * **[Week Six](week6/)**: Writing functions and loops in R
 * **[Week Seven](week7/)**: Tidyuniverse in R – cleaning and transforming data.
 * **[Week Eight](week8/)**: Tidyuniverse in R – modeling data. Class project discussion
-* **Week Nine**: TidyCensus in R – the best way to reign in Census data
+* **[Week Nine](week9/)**: Github, Rmarkdown, data transformations
 * Spring Break
 * **Week Ten**: Mapping Part 1 – Buffers on steroids, spatial queries and spatial joins.
 * **Week Eleven**: Mapping Part 2 - Projections and the finer points of mapping.
