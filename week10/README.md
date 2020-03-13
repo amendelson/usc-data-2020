@@ -85,7 +85,7 @@ This week, we're diving head first into mapping.
 
 **1. Download these**
 
-[Link to pre-k data](../data/prek_sites.csv) | [Caltrans transpo GIS data](http://www.dot.ca.gov/hq/tsip/gis/datalibrary/) (find the state highway data)
+[Link to pre-k data](../data/prek_sites.csv) | [Caltrans transpo GIS data](https://gisdata-caltrans.opendata.arcgis.com/datasets/77f2d7ba94e040a78bfbe36feb6279da_0) (we're using the the "SHN lines" data)
 
 **2. Unzip the highways shapefile and double click to open in QGIS**
 
@@ -102,7 +102,7 @@ Then, let's:
 * figure out what the CRS is
 	* Wait. [What's a CRS?](https://github.com/d3/d3-geo-projection)
 
-**3. Double click the Pre-K sites data to open in QGIS**
+**3. Drag the Pre-K sites into the application to open in QGIS**
 
 Wait, that doesn't work.
 
