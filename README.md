@@ -80,8 +80,8 @@ anime.timeline({loop: true})
 </script>
 
 <script>
-/*
-var end = new Date('04/30/2019 5:00 PM');
+
+var end = new Date('04/13/2020 5:00 PM');
 
     var _second = 1000;
     var _minute = _second * 60;
@@ -111,7 +111,7 @@ var end = new Date('04/30/2019 5:00 PM');
     }
 
     timer = setInterval(showRemaining, 1000);
-    */
+    
 </script>
 <div id="countdown">
 </div>
@@ -138,7 +138,7 @@ This class will involve the use of technical tools, and coding. But if you want 
 * **[Week Eight](week8/)**: Tidyuniverse in R – modeling data. Class project discussion
 * **[Week Nine](week9/)**: Github, Rmarkdown, data transformations
 * Spring Break
-* **Week Ten**: Mapping Part 1 – Buffers on steroids, spatial queries and spatial joins.
+* **[Week Ten](week10/)**: Mapping Part 1 – Buffers on steroids, spatial queries and spatial joins.
 * **Week Eleven**: Mapping Part 2 - Projections and the finer points of mapping.
 * **Week Twelve**: Mapping Part 3 – Using Open Street Map and Plug-Ins
 * **Week Thirteen**: Mapping Part 4 – Interactive Maps. Class project discussion

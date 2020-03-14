@@ -82,24 +82,39 @@ This week, we're gonna talk election maps and interactivity. And then we'll star
 
 ### Hands-on
 
-We're going to learn how to build an interactive map, following [this tutorial](https://leafletjs.com/examples/choropleth/).
+We've got some piping-hot data: the latest unemployment figures for California.
 
-Leaflet is a popular library for creating maps — and it's open source. We're pro-maps and pro-open source in this class.
+You're the only data journalist around in the newsroom, and the editors want a map ASAP.
 
-Download [this index.html file](files/index.html) to get started with the tutorial. We'll go through it together, step by step.
+What do you do?
 
-We'll also need this for the tutorial.
+[Start here](https://data.edd.ca.gov/Labor-Force-and-Unemployment-Rates/Labor-Force-and-Unemployment-Rate-for-California-C/r8rw-9pxx).
 
-```
-pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw
-```
+We'll go over how to wrangle that and make a county-by-county map.
 
-*Here's [a finished version](files/finished.html) of the file*.
+BTW, here is a [definition](https://web.archive.org/web/20061217002213/http://www.labormarketinfo.edd.ca.gov/article.asp?ARTICLEID=118) of *seasonally-adjusted*:
+
+> Over the course of a year, the size of the labor force, the levels of employment and unemployment, and other measures of labor market activity undergo fluctuations due to seasonal events including changes in weather, harvests, major holidays, and school schedules.  Because these seasonal events follow a more or less regular pattern each year, their influence on statistical trends can be eliminated by seasonally adjusting the statistics from month to month.  These seasonal adjustments make it easier to observe the cyclical*, underlying trend, and other nonseasonal movements in the series.
+
+> As a general rule, the monthly employment and unemployment numbers reported in the news are seasonally adjusted data.  Seasonally adjusted data are useful when comparing several months of data. Annual average estimates are calculated from the not seasonally adjusted data series.
+
+
+And then you'll use QGIS to make another map using the data.
+
+**Your editor demands a fresh angle on the unemployment rate, putting this month's numbers in historical context.** What can you come up with?
+
+...
+
+([Here is something we will need](https://data.ca.gov/dataset/ca-geographic-boundaries))
 
 ---
 
 ### Links
-2016 election maps
+
+* An example of [cool stuff](http://graphics.latimes.com/calmap-california-county-unemployment/) you can do with unemployment data.
+* Quartz on [how the unemployment rate can mislead](https://qz.com/877432/the-us-unemployment-rate-measure-is-deceptive-and-doesnt-need-to-be/)
+
+Election maps
 
 [Presenting the least misleading map of the 2016 election](https://www.washingtonpost.com/news/politics/wp/2018/07/30/presenting-the-least-misleading-map-of-the-2016-election/?utm_term=.0d639286a97d) | [An extremely detailed map of the 2016 election](https://www.washingtonpost.com/news/politics/wp/2018/07/30/presenting-the-least-misleading-map-of-the-2016-election/?utm_term=.0d639286a97d) | [Trump to display map of 2016 election results in the White House: report](https://thehill.com/blogs/blog-briefing-room/332927-trump-will-hang-map-of-2016-election-results-in-the-white-house)
 

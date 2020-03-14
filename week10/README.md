@@ -130,6 +130,8 @@ Your maps should look like this when it's done:
 
 Cool. It's all there now. Let's remove the original highway shapefile.
 
+We can — time pending, see how to add a basemap with QuickMapServices here.
+
 
 **6. How do we figure out which sites are within the 500 foot buffer?**
 
@@ -163,5 +165,5 @@ Let's open up the attribute table and see what actually happened under the hood.
 
 ### Homework
 
-* **Final Project**: You should be working on drafts of story and graphics, looking for unanswered questions. The rough draft is due in just 18 days!
+* **Final Project**: You should be working on drafts of story and graphics, looking for unanswered questions. The rough draft is due on April 13!!!
 * Story memo: 50-100 words about Final Project progress over last week
