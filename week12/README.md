@@ -111,7 +111,7 @@ Why choose this kind of map? What'll we learn?
 **4. Change the colors**
 
 
-To do this, close the attribute table and call up Properties>Style for the CA_counties_medicare layer. Select Graduated from the dropdown menu at top, which is the option to color data according to values of a continuous variable. Select 5 under Classes, and then New color ramp... under Color ramp. While QGIS has many available color ramps, we will use this opportunity to call in a ColorBrewer sequential color scheme.
+To do this, close the attribute table and call up Properties>Style [also called Symbology] for the CA_counties_medicare layer. Select Graduated from the dropdown menu at top, which is the option to color data according to values of a continuous variable. Select 5 under Classes, and then New color ramp... under Color ramp. While QGIS has many available color ramps, we will use this opportunity to call in a ColorBrewer sequential color scheme.
 
 At the dialog box select [ColorBrewer](http://colorbrewer2.org/) and then Reds, and then click OK:
 
@@ -133,11 +133,11 @@ We've done a lot of work already. Time to save the project, by selecting Project
 
 **5. Time to design**
 
-Let's make the boundaries white and see if that looks better. So open up the Style tab under Properties once more and click on Symbol>Change.... Then select Simple fill, click on the color for Border and in the color wheel tab of the color picker, change the color to white, by moving each of the RGB sliders to 255:
+Let's make the boundaries white and see if that looks better. So open up the Style tab under Properties once more and click on Symbol>Change [or just the long, thin bar].... Then select Simple fill, click on the color for Border [or stroke color] and in the color wheel tab of the color picker, change the color to white, by moving each of the RGB sliders to 255:
 
 ![](http://paldhous.github.io/NICAR/2015/img/qgis_12.jpg)
 
-Click on Symbol>Change again, and and set the Transparency to 50%. This will keep the relative distinctions between the colors, but tone them down a little so they don’t dominate the layer we will later plot on top.
+Click on Symbol>Change [or just the long bar] again, and and set the Transparency to 50%. This will keep the relative distinctions between the colors, but tone them down a little so they don’t dominate the layer we will later plot on top.
 
 OK. The map should now look like this:
 
@@ -145,7 +145,7 @@ OK. The map should now look like this:
 
 **6. Label o'clock**
 
-To add labels to the map, select Properties>Labels and fill in the dialog box. Here I am adding a NAME label to each county, using Arial font, Italic style at a size of 11 points and with the color set to a HEX value of #4c4c4c for a dark gray:
+To add labels to the map, select Properties>Labels [you may need to specify Single Labels] and fill in the dialog box. Here I am adding a NAME label to each county, using Arial font, Italic style at a size of 11 points and with the color set to a HEX value of #4c4c4c for a dark gray:
 
 ![](http://paldhous.github.io/NICAR/2015/img/qgis_14.jpg)
 
@@ -159,10 +159,9 @@ Save again.
 
 Now is a good time to give the project a projection: We will use variant of the Albers Equal Area Conic projection, *optimized for maps of California* (!).
 
-Select Project>Project Properties>CRS (for Coordinate Reference System) from the top menu, and check Enable 'on the fly' CRS transformation. This will convert any subsequent layers we import into the Albers projection, also.
+Select Project>Project Properties>CRS (for Coordinate Reference System) from the top menu, and check Enable 'on the fly' CRS transformation [new versions will not need to do this]. This will convert any subsequent layers we import into the Albers projection, also.
 
 Type Albers into the Filter box and select NAD83(HARN)/ California Albers, which has the code EPSG:3311.
-
 
 Click OK and the map should reproject. Notice how EPSG:3311 now appears at bottom right.
 
@@ -184,13 +183,15 @@ Click OK and a large number of points will be added to the map:
 
 Sounds complicated, but it's not too tricky.
 
-Select Properties>Style for the Healthcare_Facility_Locations layer, and accept Categorized from the top dropdown menu. SelectTYPE under Column and then hit the Classify button. (Keeping Random colors for the Color ramp is fine, as we will later edit the colors manually). Select and then Delete facilities other than General Acute Care Hospital and Skilled Nursing Facility, like this:
+Select Properties>Style [or Symbology] for the Healthcare_Facility_Locations layer, and accept Categorized from the top dropdown menu. Select TYPE under Column and then hit the Classify button. (Keeping Random colors for the Color ramp is fine, as we will later edit the colors manually). Select and then Delete facilities other than General Acute Care Hospital and Skilled Nursing Facility, like this:
 
 ![](http://paldhous.github.io/NICAR/2015/img/qgis_21.jpg)
 
 To then have just the two left.
 
-Now click the Change button next to where it says Symbol, and then click on the menu next to "Size" and go to "Size Assistant". Choose Capacity for the field and Radius for the Scale Method.
+Now click the Change button next to where it says Symbol [or the long color bar next to Symbol], and then click on the menu next to "Size" and go to "Size Assistant". Choose Capacity for the field [Source] and Radius for the Scale Method.
+
+[You may have to set from / to in newer versions of QGIS]
 
 (We're scaling smaller than what the picture shows.)
 
