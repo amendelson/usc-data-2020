@@ -71,6 +71,6 @@ anime.timeline({loop: true})
 
 
 # Week 11
-This week, we'll learn review our Final Projects and hear from a guest speaker.
+This week, we'll review our Final Projects and hear from a guest speaker.
 
 
