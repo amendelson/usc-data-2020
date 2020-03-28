@@ -71,14 +71,6 @@ anime.timeline({loop: true})
 
 
 # Week 11
-This week, we'll learn more about maps and hear from a guest speaker.
+This week, we'll learn review our Final Projects and hear from a guest speaker.
 
----
-
-### Lecture
-
-[Slides](https://docs.google.com/presentation/d/1TFlAbZCLbRcD7X_yC-Tk3pfFga5AMSVzZzfkJrhpRuA/edit#slide=id.g489c55b846_0_142)
-
-
----
 

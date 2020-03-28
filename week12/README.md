@@ -73,6 +73,12 @@ anime.timeline({loop: true})
 # Week 12
 This week, we're going further into mapmaking.
 
+---
+
+### Lecture
+
+[Slides](https://docs.google.com/presentation/d/1TFlAbZCLbRcD7X_yC-Tk3pfFga5AMSVzZzfkJrhpRuA/edit#slide=id.g489c55b846_0_142)
+
 
 ---
 
