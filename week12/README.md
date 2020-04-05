@@ -183,6 +183,8 @@ Click OK and a large number of points will be added to the map:
 
 ![](http://paldhous.github.io/NICAR/2015/img/qgis_20.jpg)
 
+Great. Let's take a quick look at the attribute table to see what kind of data we're working with.
+
 **9. Style these points...**
 
 ...using color to distinguish hospitals from skilled nursing facilities, removing other facilities from the map, and scaling the circles according to the capacity of each facility.
@@ -197,7 +199,7 @@ To then have just the two left.
 
 Now click the Change button next to where it says Symbol [or the long color bar next to Symbol], and then click on the menu next to "Size" and go to "Size Assistant". Choose Capacity for the field [Source] and Radius for the Scale Method.
 
-[You may have to set from / to in newer versions of QGIS]
+[You may have to set from / to in newer versions of QGIS, from 0 to 1500]
 
 (We're scaling smaller than what the picture shows.)
 
