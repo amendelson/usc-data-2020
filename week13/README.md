@@ -90,7 +90,19 @@ What do you do?
 
 [Start here](https://data.edd.ca.gov/Labor-Force-and-Unemployment-Rates/Labor-Force-and-Unemployment-Rate-for-California-C/r8rw-9pxx).
 
-We'll go over how to wrangle that and make a county-by-county map.
+We'll go over how to wrangle.
+
+And then you'll go into groups, and use QGIS to make another map using the data.
+
+**Your editor demands a fresh map on the unemployment rate, putting this month's numbers in geographical context.** What can you come up with?
+
+For you map, please:
+
+* Color counties based on unemployment rate
+* Add labels
+* Find the text annotation tool and add a note to the map
+* Export the map with a legend
+
 
 BTW, here is a [definition](https://web.archive.org/web/20061217002213/http://www.labormarketinfo.edd.ca.gov/article.asp?ARTICLEID=118) of *seasonally-adjusted*:
 
@@ -99,9 +111,6 @@ BTW, here is a [definition](https://web.archive.org/web/20061217002213/http://ww
 > As a general rule, the monthly employment and unemployment numbers reported in the news are seasonally adjusted data.  Seasonally adjusted data are useful when comparing several months of data. Annual average estimates are calculated from the not seasonally adjusted data series.
 
 
-And then you'll use QGIS to make another map using the data.
-
-**Your editor demands a fresh angle on the unemployment rate, putting this month's numbers in historical context.** What can you come up with?
 
 ...
 
