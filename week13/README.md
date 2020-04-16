@@ -76,7 +76,7 @@ This week, we're gonna talk election maps and interactivity. And then we'll star
 
 ### Lecture
 
-[Slides](https://docs.google.com/presentation/d/1NFou_0UfhSHlNGxb3QEeVgLE2SBRFpB_J6gnVEkcnLQ/edit#slide=id.g4a430350dc_0_161)
+[Slides](https://docs.google.com/presentation/d/1NFou_0UfhSHlNGxb3QEeVgLE2SBRFpB_J6gnVEkcnLQ/edit#slide=id.p)
 
 ---
 

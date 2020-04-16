@@ -141,7 +141,7 @@ This class will involve the use of technical tools, and coding. But if you want 
 * **[Week Ten](week10/)**: Mapping Part 1 – Buffers on steroids, spatial queries and spatial joins.
 * **[Week Eleven](week11/)**: Mapping Part 2 - Projections and the finer points of mapping.
 * **[Week Twelve](week12)**: Mapping Part 3 – Using Open Street Map and Plug-Ins
-* **Week Thirteen**: Mapping Part 4 – Interactive Maps. Class project discussion
+* **[Week Thirteen](week13/)**: Mapping Part 4 – Interactive Maps. Class project discussion
 * **Week Fourteen**: Bulk geocoding data with an API
 * **Week Fifteen**: Overview of Jupyter Notebook and R Kernel. Using Markdown and Github.
 * Final
