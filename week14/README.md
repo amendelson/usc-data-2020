@@ -112,7 +112,7 @@ Point your browser [here](https://www.geocod.io/)
 
 **4. Open file up in QGIS**
 
-and
+I suggest EPSG 4269: NAD 83 as the CRS
 
 **5. Also open up the original file in QGIS**
 
@@ -120,7 +120,77 @@ Do they match?
 
 **6. Let's do some reporting**
 
-And figure out how many of these shootings happen in different cities in L.A. County. [Start here](https://hub.arcgis.com/datasets/7b0998f4e2ea42bda0068afc8eeaf904_19?geometry=-125.811%2C32.178%2C-110.793%2C35.374).
+And figure out how many of these shootings happen in census tracts with below average incomes.
+
+Start by firing up R. Begin with this:
+
+```
+library(tidycensus)
+library(tidyverse)
+options(tigris_use_cache = TRUE)
+
+la <- get_acs(state = "CA", county = "Los Angeles", geography = "tract", variables = "B19013_001", geometry = TRUE)
+```
+
+What'd we do there?
+
+This isn't really necessary, but it's nice to see how simple it is to map it in R.
+
+```
+la %>%
+  ggplot(aes(fill = estimate)) + 
+  geom_sf(color = NA) + 
+  coord_sf(crs = 26911) + 
+  scale_fill_viridis_c(option = "magma") 
+```
+
+**7. Compare to median household income**
+
+Let's get the median household income for the county as a whole.
+
+```
+la_median <- get_acs(state = "CA", county = "Los Angeles", geography = "county", variables = "B19013_001", geometry = FALSE)
+```
+
+
+Alright here's the big comparison. Let's use case_when.
+
+```
+la$median <- case_when(
+    la$estimate >= la_median$estimate ~ "above median", 
+    TRUE ~ "below median")
+```
+And let's check how many tracts are below the median income.
+
+```
+la %>% group_by(median) %>% tally()
+```
+
+**8. Export that data**
+
+I'm putting mine in my Downloads folder, you'll want to adjust accordingly.
+
+```
+install.packages("sf")
+library(sf)
+st_write(la, "~/Downloads/la.shp")
+```
+
+**9. Count points in polygon**
+
+Add the shapefile.
+
+Then, let's try this.
+
+<img src ="imgs/points-in-poly.png" width = "600">
+
+Pretty strightforward. Now, let's open the attribute table and see what it did.
+
+We can highlight the highest counts, by selecting those rows.
+
+**10. Let's figure out if most shootings happen in above or below median income tracts.**
+
+How do we do that? You tell me.
 
 ---
 

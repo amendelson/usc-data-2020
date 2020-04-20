@@ -70,7 +70,7 @@ anime.timeline({loop: true})
 </script>
 
 # Week 13
-This week, we're gonna talk election maps and interactivity. And then we'll start on an interactive map of our own.
+This week, we're gonna talk election maps and interactivity. And then we'll start on a map of our own.
 
 ---
 
