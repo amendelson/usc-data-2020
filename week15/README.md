@@ -74,17 +74,34 @@ anime.timeline({loop: true})
 
 ### Hands-on
 
-We're going to learn how to build an interactive map, following [this tutorial](https://leafletjs.com/examples/choropleth/).
+Let's explore some new and different things.
 
-Leaflet is a popular library for creating maps — and it's open source. We're pro-maps and pro-open source in this class.
+**Correlation**
 
-Download [this index.html file](files/index.html) to get started with the tutorial. We'll go through it together, step by step.
-
-We'll also need this for the tutorial.
+Let's begin by installing and load some packages.
 
 ```
-pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw
+# install new
+install.packages("PerformanceAnalytics")
+install.packages("psych")
+install.packages("rcompanion")
+
+# load them
+library(PerformanceAnalytics)
+library(psych)
+library(rcompanion)
+library(ggplot2)
+
 ```
 
-*Here's [a finished version](files/finished.html) of the file*.
+Let's explore
+
+
+*With debt to [this tutorial](https://rcompanion.org/handbook/I_10.html)*
+
+**Widgets**
+
+* [htmlwidgets collection](https://www.htmlwidgets.org/showcase_leaflet.html)
+* [datatables](https://rstudio.github.io/DT/)
+* [rayshader](https://www.rayshader.com/)
 
