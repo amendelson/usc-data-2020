@@ -78,30 +78,88 @@ Let's explore some new and different things.
 
 **Correlation**
 
-Let's begin by installing and load some packages.
+[Inspiration](https://xkcd.com/552/) for today.
+
+Let's begin by installing and loading some packages.
 
 ```
 # install new
 install.packages("PerformanceAnalytics")
 install.packages("psych")
-install.packages("rcompanion")
+# install.packages("rcompanion")
 
 # load them
 library(PerformanceAnalytics)
 library(psych)
-library(rcompanion)
-library(ggplot2)
+# library(rcompanion)
+library(tidyverse)
 
 ```
 
-Let's explore
+Let's load our data ... which I think is based on an old TV show.
 
+```
+Data <- read_csv("https://amendelson.github.io/usc-data-2020/week15/Data.csv")
+```
+
+OK, one easy way to spot correlation is using charts. Let's try this.
+
+```
+pairs(data=Data,
+    ~ Grade + Weight + Calories + Sodium + Score)
+```
+
+The corr.test function in the psych package can be used in a similar way, with the output being a table of correlation coefficients and a table of p-values.
+
+A p-value is a measure of correlation.
+
+Let's get a dataframe of just numeric vectors.
+
+```
+Data_num <- Data %>% select(-Instructor)
+```
+
+Now let's get the p-values.
+
+```
+corr.test(Data_num,
+          use    = "pairwise",
+          method = "pearson",
+          adjust = "none")
+```
+
+The thing to keep in mind: the closer to 1 or -1, the more significant the correlation.
+
+Another way to explore the correlation is through the PerformanceAnalytics package.
+
+```
+chart.Correlation(Data_num,
+                  method="pearson",
+                  histogram=TRUE,
+                  pch=16)
+```
+
+And ggplot can also give us a good indication of correlation, by providing the 'line of best fit' with a confidence interval.
+
+```
+ggplot(Data,
+       aes(x = Calories,
+           y = Sodium)) +
+    geom_point() +
+    geom_smooth(method  = "lm",
+                formula = y ~ poly(x, 2, raw=TRUE), se = TRUE)
+```
 
 *With debt to [this tutorial](https://rcompanion.org/handbook/I_10.html)*
 
 **Widgets**
 
+Let's check out something I've been meaning to explore: [gganimate](https://www.r-graph-gallery.com/271-ggplot2-animated-gif-chart-with-gganimate.html).
+
+And with remaining time dive into the following:
+
 * [htmlwidgets collection](https://www.htmlwidgets.org/showcase_leaflet.html)
 * [datatables](https://rstudio.github.io/DT/)
 * [rayshader](https://www.rayshader.com/)
+* [mapdeck](https://symbolixau.github.io/mapdeck/articles/layers.html)
 
