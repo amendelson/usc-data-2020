@@ -79,15 +79,15 @@ This week, we'll explore the wild world of geocoding.
 
 You all put your own twist on this week's homework:
 
-<img src="imgs/a.png" width="500">
-<img src="imgs/b.png" width="500">
-<img src="imgs/c.png" width="500">
-<img src="imgs/d.png" width="500">
-<img src="imgs/e.png" width="500">
-<img src="imgs/f.png" width="500">
-<img src="imgs/g.png" width="500">
-<img src="imgs/h.jpg" width="500">
-<img src="imgs/i.png" width="500">
+<img src="imgs/a.png" width="600">
+<img src="imgs/b.png" width="600">
+<img src="imgs/c.png" width="600">
+<img src="imgs/d.png" width="600">
+<img src="imgs/e.png" width="600">
+<img src="imgs/f.png" width="600">
+<img src="imgs/g.png" width="600">
+<img src="imgs/h.jpg" width="600">
+<img src="imgs/i.png" width="600">
 
 ---
 
