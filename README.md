@@ -81,7 +81,7 @@ anime.timeline({loop: true})
 
 <script>
 
-var end = new Date('05/05/2020 5:00 PM');
+var end = new Date('05/07/2020 5:00 PM');
 
     var _second = 1000;
     var _minute = _second * 60;
