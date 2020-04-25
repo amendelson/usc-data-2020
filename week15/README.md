@@ -72,13 +72,11 @@ anime.timeline({loop: true})
 
 # Week 15
 
-### Hands-on
+### Hands-on pt. 1 — correlation
 
-Let's explore some new and different things.
+[Inspiration](https://xkcd.com/552/) for today:
 
-**Correlation**
-
-[Inspiration](https://xkcd.com/552/) for today.
+<img src = "https://imgs.xkcd.com/comics/correlation.png">
 
 Let's begin by installing and loading some packages.
 
@@ -86,12 +84,10 @@ Let's begin by installing and loading some packages.
 # install new
 install.packages("PerformanceAnalytics")
 install.packages("psych")
-# install.packages("rcompanion")
 
 # load them
 library(PerformanceAnalytics)
 library(psych)
-# library(rcompanion)
 library(tidyverse)
 
 ```
@@ -152,14 +148,19 @@ ggplot(Data,
 
 *With debt to [this tutorial](https://rcompanion.org/handbook/I_10.html)*
 
-**Widgets**
+### Part 2 — animation
 
 Let's check out something I've been meaning to explore: [gganimate](https://www.r-graph-gallery.com/271-ggplot2-animated-gif-chart-with-gganimate.html).
 
-And with remaining time dive into the following:
+### Part 3 — choose your own adventure
 
-* [htmlwidgets collection](https://www.htmlwidgets.org/showcase_leaflet.html)
-* [datatables](https://rstudio.github.io/DT/)
+The htmlwidgets are a great way to get your data in front of your readers:
+
+* [htmlwidgets collection](https://www.htmlwidgets.org/index.html)
+
+With any extra time, we can also check out these neat packages:
+
 * [rayshader](https://www.rayshader.com/)
 * [mapdeck](https://symbolixau.github.io/mapdeck/articles/layers.html)
+* [datatables](https://rstudio.github.io/DT/)
 

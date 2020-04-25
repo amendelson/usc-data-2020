@@ -143,7 +143,7 @@ This class will involve the use of technical tools, and coding. But if you want 
 * **[Week Twelve](week12)**: Mapping Part 3 – Using Open Street Map and Plug-Ins
 * **[Week Thirteen](week13/)**: Mapping Part 4 – Interactive Maps. Class project discussion
 * **[Week Fourteen](week14/)**: Bulk geocoding data with an API
-* **Week Fifteen**: Overview of Jupyter Notebook and R Kernel. Using Markdown and Github.
+* **[Week Fifteen](week15/)**: Overview of Jupyter Notebook and R Kernel. Using Markdown and Github.
 * Final
 
 
